@@ -15,6 +15,7 @@ using Delopgaveprojekt.DbFactory;
 using Delopgaveprojekt.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using Microsoft.Net.Http.Headers;
 
 namespace Delopgaveprojekt
 {
@@ -36,7 +37,7 @@ namespace Delopgaveprojekt
             {
                 options.AddPolicy(MyAllowSpecificaticOrigins, builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader(); 
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials(); 
                 });
             });
             var host = Configuration["DBHOST"] ?? "localhost";

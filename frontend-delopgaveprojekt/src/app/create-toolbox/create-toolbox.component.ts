@@ -30,7 +30,7 @@ export class CreateToolboxComponent implements OnInit {
 
   onSubmit() {
     if (this.update) {
-      this.toolBoxService.updateToolBox(this.model.VTKId, this.model).subscribe(res => {
+      this.toolBoxService.updateToolBox(this.model.vtkId, this.model).subscribe(res => {
         console.log(res);
       },
         err => console.log(err)

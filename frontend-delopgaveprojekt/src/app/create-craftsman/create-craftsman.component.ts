@@ -31,7 +31,7 @@ export class CreateCraftsmanComponent implements OnInit {
   onSubmit() {
 
     if (this.update) {
-      this.craftsmanService.updateCraftsman(this.model.HaandvaerkerId, this.model).subscribe(res => {
+      this.craftsmanService.updateCraftsman(this.model.haandvaerkerId, this.model).subscribe(res => {
         console.log(res);
       },
         err => console.log(err)

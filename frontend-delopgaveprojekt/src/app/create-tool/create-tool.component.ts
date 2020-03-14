@@ -31,7 +31,7 @@ export class CreateToolComponent implements OnInit {
   onSubmit() {
 
     if (this.update) {
-      this.toolService.updateTool(this.model.VTId, this.model).subscribe(res => {
+      this.toolService.updateTool(this.model.vtId, this.model).subscribe(res => {
         console.log(res);
       },
         err => console.log(err)

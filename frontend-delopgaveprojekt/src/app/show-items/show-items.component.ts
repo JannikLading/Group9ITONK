@@ -12,30 +12,21 @@ import { Craftsman } from "../models/craftsman.model";
   styleUrls: ["./show-items.component.css"]
 })
 export class ShowItemsComponent implements OnInit {
-  tools: Tool[] = [<Tool>{ VTId: 1 }, <Tool>{ VTId: 2 }, <Tool>{ VTId: 3 }];
-  toolboxes: ToolBox[] = [
-    <ToolBox>{ VTKId: 1 },
-    <ToolBox>{ VTKId: 2 },
-    <ToolBox>{ VTKId: 3 }
-  ];
-  craftsmen: Craftsman[] = [
-    <Craftsman>{ HaandvaerkerId: 1 },
-    <Craftsman>{ HaandvaerkerId: 2 },
-    <Craftsman>{ HaandvaerkerId: 3 }
-  ];
+  tools: Tool[];
+  toolboxes: ToolBox[];
+  craftsmen: Craftsman[];
 
   constructor(
     private toolService: ToolService,
     private toolboxService: ToolBoxService,
     private craftsmanService: CraftsmanService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.toolService.getTools().subscribe(res => (this.tools = res));
-    this.toolboxService.getToolBoxes().subscribe(res => (this.toolboxes = res));
+    this.toolService.getTools().subscribe(res => this.tools = res);
+    this.toolboxService.getToolBoxes().subscribe(res => this.toolboxes = res);
     this.craftsmanService.getCraftsmen().subscribe(res => {
       this.craftsmen = res;
-      console.log(this.craftsmen);
     });
   }
 }

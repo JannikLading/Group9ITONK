@@ -125,5 +125,8 @@
       }
     }
   },
-  "defaultProject": "frontend-delopgaveprojekt"
+  "defaultProject": "frontend-delopgaveprojekt",
+  "cli": {
+    "analytics": false
+  }
 }

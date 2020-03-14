@@ -5,12 +5,11 @@
 export const environment = {
   production: false,
   ENDPOINT: {
-    TOOL: "https//localhost:5000/tool",
-    TOOLBOX: "https//localhost:5000/toolbox",
-    CRAFTSMAN: "https//localhost:5000/craftsman"
+    TOOL: "http://localhost:5000/Vaerktoej",
+    TOOLBOX: "http://localhost:5000/api/Vearktoejskasse",
+    CRAFTSMAN: "http://localhost:5000/api/Haandvaerker"
   }
 };
-
 
 /*
  * For easier debugging in development mode, you can import the following file

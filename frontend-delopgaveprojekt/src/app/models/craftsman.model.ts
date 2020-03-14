@@ -1,14 +1,12 @@
-import { ToolBox } from './toolbox.model';
+import { ToolBox } from "./toolbox.model";
 
 export class Craftsman {
-
-    constructor(
-        public HaandvaerkerId: number,
-        public HVAnsaettelsedato: Date,
-        public HVEfternavn: string,
-        public HVFagomraade: string,
-        public HVFornavn: string,
-        public Vaerktoejskasse: ToolBox[]
-    ) { }
-
+  constructor(
+    public haandvaerkerId: number,
+    public hvAnsaettelsedato: Date,
+    public hvEfternavn: string,
+    public hvFagomraade: string,
+    public hvFornavn: string,
+    public vaerktoejskasse: ToolBox[]
+  ) {}
 }

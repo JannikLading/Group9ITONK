@@ -1,47 +1,46 @@
 <div class="container">
-    <h1>Håndværker</h1>
+  <h1>Håndværker</h1>
 
-    <form (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
 
-        <div class="form-group">
-            <label for="HaandvaerkerId">HaandvaerkerId</label>
-            <input type="number" class="form-control" id="HaandvaerkerId" [(ngModel)]="model.HaandvaerkerId"
-                name="VTKId">
-        </div>
+    <div class="form-group">
+      <label for="HaandvaerkerId">HaandvaerkerId</label>
+      <input type="number" class="form-control" id="HaandvaerkerId" [(ngModel)]="model.haandvaerkerId" name="VTKId">
+    </div>
 
-        <div class="form-group">
-            <label for="HVAnsaettelsedato">HVAnsaettelsedato</label>
-            <input type="text" class="form-control" [(ngModel)]="model.HVAnsaettelsedato" name="HVAnsaettelsedato">
-        </div>
-
-
-        <div class="form-group">
-            <label for="HVEfternavn">HVEfternavn</label>
-            <input type="text" class="form-control" [(ngModel)]="model.HVEfternavn" name="HVEfternavn">
-        </div>
-
-        <div class="form-group">
-            <label for="HVFagomraade">HVFagomraade</label>
-            <input type="text" class="form-control" [(ngModel)]="model.HVFagomraade" name="HVFagomraade">
-        </div>
+    <div class="form-group">
+      <label for="hvAnsaettelsedato">hvAnsaettelsedato</label>
+      <input type="text" class="form-control" [(ngModel)]="model.hvAnsaettelsedato" name="hvAnsaettelsedato">
+    </div>
 
 
-        <div class="form-group">
-            <label for="HVFornavn">HVFornavn</label>
-            <input type="text" class="form-control" [(ngModel)]="model.HVFornavn" name="HVFornavn">
-        </div>
+    <div class="form-group">
+      <label for="hvEfternavn">hvEfternavn</label>
+      <input type="text" class="form-control" [(ngModel)]="model.hvEfternavn" name="hvEfternavn">
+    </div>
 
-        <div class="form-group">
-            <select id="Vaerktoejskasse" (ngModel)="model.Vaerktoejskasse" multiple>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
+    <div class="form-group">
+      <label for="hvFagomraade">hvFagomraade</label>
+      <input type="text" class="form-control" [(ngModel)]="model.hvFagomraade" name="hvFagomraade">
+    </div>
 
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+
+    <div class="form-group">
+      <label for="hvFornavn">hvFornavn</label>
+      <input type="text" class="form-control" [(ngModel)]="model.hvFornavn" name="hvFornavn">
+    </div>
+
+    <div class="form-group">
+      <select id="Vaerktoejskasse" (ngModel)="model.vaerktoejskasse" multiple>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
 </div>

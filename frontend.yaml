@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: DelopgaveprojektFrontend   
+  labels:
+    app: frontend-g9
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: frontend-g9
+    spec:
+      containers:
+        - image: "frontendImage"
+          imagePullPolicy: Always
+          name: frontend-g9
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: frontend-g9
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80
+    selector:
+    app: frontend-g9
+
+            

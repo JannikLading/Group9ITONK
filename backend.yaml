@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: DelopgaveprojektBackend   
+  labels:
+    app: backend-g9
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: backend-g9
+    spec:
+      containers:
+        - image: "backendImage"
+          imagePullPolicy: Always
+          name: backend-g9
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: backend-g9
+spec:
+    type: LoadBalancer
+    ports:
+    - port: 80
+    selector:
+    app: backend-g9
+
+            

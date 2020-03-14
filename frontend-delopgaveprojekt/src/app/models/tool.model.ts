@@ -1,13 +1,11 @@
 export class Tool {
-
-    constructor(
-        public VTId: number,
-        public VTAnskaffet: Date,
-        public VTFabrikat: string,
-        public VTModel: string,
-        public VTSerienummer: string,
-        public VTType: string,
-        public LiggerIvtk?: number
-    ) { }
-
+  constructor(
+    public vtId: number,
+    public vtAnskaffet: Date,
+    public vtFabrikat: string,
+    public vtModel: string,
+    public vtSerienummer: string,
+    public vtType: string,
+    public liggerIvtk?: number
+  ) {}
 }

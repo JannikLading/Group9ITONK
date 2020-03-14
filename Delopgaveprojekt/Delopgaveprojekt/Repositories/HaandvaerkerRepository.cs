@@ -19,7 +19,7 @@ namespace Delopgaveprojekt.Repositories
         {
             if (haandvaerker != null)
             {
-                _dbContext.Haandvaerkers.Add(haandvaerker);
+                _dbContext.Haandvaerkers.Local.Add(haandvaerker);
                 _dbContext.SaveChanges();
 
             }
@@ -47,7 +47,7 @@ namespace Delopgaveprojekt.Repositories
             var haandvaerkers = new List<Haandvaerker>();
             try
             {
-                haandvaerkers= _dbContext.Haandvaerkers.ToList();
+                haandvaerkers= _dbContext.Haandvaerkers.Local.ToList();
             }
             catch(Exception e)
             {

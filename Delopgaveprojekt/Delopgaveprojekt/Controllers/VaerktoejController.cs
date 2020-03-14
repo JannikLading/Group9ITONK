@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Delopgaveprojekt.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging; 
 
 namespace Delopgaveprojekt.Controllers
 {

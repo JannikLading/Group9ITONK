@@ -38,7 +38,7 @@ namespace Delopgaveprojekt.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Models.Haandvaerker hv)
+        public void Post([FromBody]Models.Haandvaerker hv)  
         {
             _haandvaerkerRepository.AddHaandvaerker(hv);
         }

@@ -20,6 +20,8 @@ namespace Delopgaveprojekt
 {
     public class Startup
     {
+        readonly string MyAllowSpecificaticOrigins = "_hej"; 
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -30,14 +32,21 @@ namespace Delopgaveprojekt
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(MyAllowSpecificaticOrigins, builder =>
+                {
+                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader(); 
+                });
+            });
             var host = Configuration["DBHOST"] ?? "localhost";
             var port = Configuration["DBPORT"] ?? "3306";
             var paasword = Configuration["DBPASSWORD"] ?? "secret";
 
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
-                    //options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
-                    options.UseInMemoryDatabase("haandvaerkers");
+                    options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
+                    //options.UseInMemoryDatabase("haandvaerkers");
                 }
             );
             //services.AddSingleton<AppDbContext.AppDbContext>();
@@ -64,7 +73,9 @@ namespace Delopgaveprojekt
 
             app.UseAuthorization();
 
-            //context.Database.Migrate();
+            app.UseCors(MyAllowSpecificaticOrigins);
+
+            context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {

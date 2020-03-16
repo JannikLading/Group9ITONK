@@ -27,13 +27,7 @@ namespace Delopgaveprojekt.Controllers
         [HttpGet]
         public List<Models.Vaerktoej> Get()
         {
-            //return _vaerktoejRepository.GetVaerktoejs();
-            return new List<Models.Vaerktoej>{ new Models.Vaerktoej {
-            VTAnskaffet = DateTime.Now,
-            VTFabrikat = "Apollo Productions",
-            VTId = 42,
-            VTModel = "Ja",
-            } };
+            return _vaerktoejRepository.GetVaerktoejs();
         }
 
         // GET: api/Vaerktoej/5
@@ -51,15 +45,15 @@ namespace Delopgaveprojekt.Controllers
         }
 
         // PUT: api/Vaerktoej/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Models.Vaerktoej vt)//Hvad skal der helt præcis  ske her???
+        [HttpPut]
+        public void Put([FromBody] Models.Vaerktoej vt)
         {
             _vaerktoejRepository.UpdateVaerktoej(vt);
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(Models.Vaerktoej vt)
+        [HttpDelete]
+        public void Delete([FromBody]Models.Vaerktoej vt)
         {
             _vaerktoejRepository.DeleteVaerktoej(vt);
         }

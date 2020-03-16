@@ -44,15 +44,15 @@ namespace Delopgaveprojekt.Controllers
         }
 
         // PUT api/<controller>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Models.Haandvaerker hv)//Hvad præcis skal der ske her???
+        [HttpPut]
+        public void Put([FromBody]Models.Haandvaerker hv)
         {
             _haandvaerkerRepository.UpdateHaandvaerker(hv);
         }
 
         // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
-        public void Delete(Models.Haandvaerker hv)
+        [HttpDelete]
+        public void Delete([FromBody]Models.Haandvaerker hv)
         {
             _haandvaerkerRepository.DeleteHaandvaerker(hv);
         }

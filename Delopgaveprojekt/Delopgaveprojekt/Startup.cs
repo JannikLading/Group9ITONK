@@ -46,16 +46,16 @@ namespace Delopgaveprojekt
 
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
-                    options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
-                    //options.UseInMemoryDatabase("haandvaerkers");
+                    //options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
+                    options.UseInMemoryDatabase("haandvaerkers");
                 }
             );
             //services.AddSingleton<AppDbContext.AppDbContext>();
             services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
             //services.AddScoped<IDbFactory, DbFactory.DbFactory>();
             services.AddScoped<IHaandvaerkerRepository, HaandvaerkerRepository>();
-            //services.AddScoped<IVaerktoejRepository, VaerktoejRepository>();
-            //services.AddScoped<IVaerktoejskasseRepository, VaerktoejskasseRepository>();
+            services.AddScoped<IVaerktoejRepository, VaerktoejRepository>();
+            services.AddScoped<IVaerktoejskasseRepository, VaerktoejskasseRepository>();
             
         }
 
@@ -76,7 +76,7 @@ namespace Delopgaveprojekt
 
             app.UseCors(MyAllowSpecificaticOrigins);
 
-            context.Database.Migrate();
+            //context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {

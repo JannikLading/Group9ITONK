@@ -40,14 +40,14 @@ namespace Delopgaveprojekt
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); 
                 });
             });
-            var host = Configuration["DBHOST"] ?? "localhost";
+            var host = Configuration["DBHOST"] ?? "mysql-service";
             var port = Configuration["DBPORT"] ?? "3306";
             var paasword = Configuration["DBPASSWORD"] ?? "secret";
 
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
-                    //options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
-                    options.UseInMemoryDatabase("haandvaerkers");
+                    options.UseMySql($"server={host}; userid=root; pwd={paasword};" + $"port={port}; database=haandvaerkers");
+                    //options.UseInMemoryDatabase("haandvaerkers");
                 }
             );
             //services.AddSingleton<AppDbContext.AppDbContext>();
@@ -76,7 +76,7 @@ namespace Delopgaveprojekt
 
             app.UseCors(MyAllowSpecificaticOrigins);
 
-            //context.Database.Migrate();
+            context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {

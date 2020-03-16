@@ -29,4 +29,17 @@ export class ShowItemsComponent implements OnInit {
       this.craftsmen = res;
     });
   }
+
+  deleteToolBox(tbx: ToolBox) {
+    this.toolboxService.deleteToolBox(tbx.vtkId);
+  }
+
+  deleteTool(tool: Tool) {
+    this.toolService.deleteTool(tool.vtId);
+  }
+
+  deleteCraftman(man: Craftsman) {
+    this.craftsmanService.deleteCraftsman(man.haandvaerkerId);
+  }
+
 }

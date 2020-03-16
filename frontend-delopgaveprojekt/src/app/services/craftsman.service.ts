@@ -6,7 +6,7 @@ import { Craftsman } from "../models/craftsman.model";
 
 @Injectable()
 export class CraftsmanService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getCraftsman(craftsmanId: number): Observable<Craftsman> {
     const url = environment.ENDPOINT.CRAFTSMAN + "/" + craftsmanId;
@@ -29,4 +29,10 @@ export class CraftsmanService {
     const url = environment.ENDPOINT.CRAFTSMAN;
     return this.http.post<Craftsman>(url, craftsman);
   }
+
+  deleteCraftsman(id: Number) {
+    const url = environment.ENDPOINT.CRAFTSMAN + "/" + id;
+    return this.http.delete(url);
+  }
+
 }

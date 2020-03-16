@@ -30,6 +30,10 @@ export class ToolService {
         return this.http.post<Tool>(url, tool);
     }
 
+    deleteTool(id: Number) {
+        const url = environment.ENDPOINT.TOOL + "/" + id;
+        return this.http.delete(url);
+    }
 }
 
 

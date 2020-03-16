@@ -44,17 +44,17 @@ namespace Delopgaveprojekt.Controllers
         }
 
         // PUT: api/Vaerktoejskasse/5
-        [HttpPut]
-        public void Put([FromBody] Models.Vaerktoejskasse vk)
+        [HttpPut("{id}")]
+        public void Put(int id)
         {
-            _vaerktoejskasseRepository.UpdateVaerktoejskasse(vk);
+            _vaerktoejskasseRepository.UpdateVaerktoejskasse(id);
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete]
-        public void Delete([FromBody]Models.Vaerktoejskasse vk)
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            _vaerktoejskasseRepository.DeleteVaerktoejskasse(vk);
+            _vaerktoejskasseRepository.DeleteVaerktoejskasse(id);
         }
     }
 }

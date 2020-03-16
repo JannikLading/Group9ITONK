@@ -23,13 +23,10 @@ namespace Delopgaveprojekt.Repositories
             }
         }
 
-        public void DeleteVaerktoejskasse(Vaerktoejskasse vk)
+        public void DeleteVaerktoejskasse(int id)
         {
-            if (vk!=null)
-            {
-                _dbContext.Vaerktoejskasses.Remove(vk);
-                _dbContext.SaveChanges();
-            }
+            _dbContext.Vaerktoejskasses.Remove(_dbContext.Vaerktoejskasses.Find(id));
+            _dbContext.SaveChanges();
         }
 
         public Vaerktoejskasse GetById(int id)
@@ -46,13 +43,10 @@ namespace Delopgaveprojekt.Repositories
             return _dbContext.Vaerktoejskasses.ToList();
         }
 
-        public void UpdateVaerktoejskasse(Vaerktoejskasse vaerktoejskasse)
+        public void UpdateVaerktoejskasse(int id)
         {
-            if (vaerktoejskasse != null)
-            {
-                _dbContext.Vaerktoejskasses.Update(vaerktoejskasse);
-                _dbContext.SaveChanges();
-            }
+            _dbContext.Vaerktoejskasses.Update(_dbContext.Vaerktoejskasses.Find(id));
+            _dbContext.SaveChanges();
         }
     }
 }

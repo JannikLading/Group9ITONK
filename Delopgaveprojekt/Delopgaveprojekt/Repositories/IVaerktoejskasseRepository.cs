@@ -11,7 +11,7 @@ namespace Delopgaveprojekt.Repositories
         void AddVaerktoejskasse(Vaerktoejskasse vaerktoejskasse);
         List<Vaerktoejskasse> GetVaerktoejskasses();
         Vaerktoejskasse GetById(int id);
-        void UpdateVaerktoejskasse(Vaerktoejskasse vaerktoejskasse);
-        void DeleteVaerktoejskasse(Vaerktoejskasse vk);
+        void UpdateVaerktoejskasse(int id);
+        void DeleteVaerktoejskasse(int id);
     }
 }

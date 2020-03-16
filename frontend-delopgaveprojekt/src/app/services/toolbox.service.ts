@@ -30,6 +30,10 @@ export class ToolBoxService {
         return this.http.post<ToolBox>(url, toolBox);
     }
 
+    deleteToolBox(id: Number) {
+        const url = environment.ENDPOINT.TOOLBOX + "/" + id;
+        return this.http.delete(url);
+    }
 }
 
 

@@ -16,13 +16,15 @@
   </tr>
   <tr *ngFor="let tool of tools">
     <td>
-      <a [routerLink]=" ['tool',tool.VTId]">{{tool.VTId}}</a>
+      <a [routerLink]=" ['tool',tool.VTId]">{{tool.vtId}}</a>
     </td>
     <td>
-      {{tool.VTAnskaffet}}
+      {{tool.vtAnskaffet}}
     </td>
     <td>
-      {{tool.LiggerIvtk}}
+      {{tool.liggerIvtk}}
+      <button class="btn btn-danger" onclick="deleteTool(tool)" style="padding: 0px 2px;"><i
+          class="fas fa-times"></i></button>
     </td>
   </tr>
 </table>
@@ -45,13 +47,15 @@
   </tr>
   <tr *ngFor="let tbx of toolboxes">
     <td>
-      <a [routerLink]="['toolbox',tbx.VTKId]"> {{ tbx.vtKId }} </a>
+      <a [routerLink]="['toolbox',tbx.vtkId]"> {{ tbx.vtkId }} </a>
     </td>
     <td>
-      {{tbx.vtKAnskaffet}}
+      {{tbx.vtkAnskaffet}}
     </td>
     <td>
-      {{tbx.vtKEjesAf}}
+      {{tbx.vtkEjesAf}}
+      <button class="btn btn-danger" onclick="deleteToolBox(tbx)" style="padding: 0px 2px;"><i
+          class="fas fa-times"></i></button>
     </td>
   </tr>
 </table>
@@ -81,6 +85,8 @@
     </td>
     <td>
       {{man.hvFagomraade}}
+      <button class="btn btn-danger" onclick="deleteCraftman(man)" style="padding: 0px 2px;"><i
+          class="fas fa-times"></i></button>
     </td>
   </tr>
 </table>

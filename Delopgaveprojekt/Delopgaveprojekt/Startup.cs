@@ -37,7 +37,7 @@ namespace Delopgaveprojekt
             {
                 options.AddPolicy(MyAllowSpecificaticOrigins, builder =>
                 {
-                    builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials(); 
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); 
                 });
             });
             var host = Configuration["DBHOST"] ?? "localhost";

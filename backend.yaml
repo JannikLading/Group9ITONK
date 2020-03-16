@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: DelopgaveprojektBackend   
+  name: delopgaveprojektbackend   
   labels:
     app: backend-g9
 spec:
@@ -12,21 +12,23 @@ spec:
         app: backend-g9
     spec:
       containers:
-        - image: "backendImage"
+        - image: "docker.io/nichlaes/backendimage:v1"
           imagePullPolicy: Always
           name: backend-g9
           ports:
-            - containerPort: 80
+            - containerPort: 1337
 ---
 apiVersion: v1
 kind: Service
 metadata:
-    name: backend-g9
+    name: backend-g9  
+    labels: 
 spec:
-    type: LoadBalancer
-    ports:
-    - port: 80
-    selector:
+  selector:
     app: backend-g9
-
+  ports:
+    - protocol: TCP
+      port: 1337
+      targetPort: 1337
+  type: LoadBalancer
             

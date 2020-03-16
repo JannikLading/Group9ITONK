@@ -24,13 +24,10 @@ namespace Delopgaveprojekt.Repositories
 
             }
         }
-        public void DeleteHaandvaerker(Haandvaerker hv)
+        public void DeleteHaandvaerker(int id)
         {
-            if (hv != null)
-            {
-                _dbContext.Haandvaerkers.Remove(hv);
+                _dbContext.Haandvaerkers.Remove(_dbContext.Haandvaerkers.Find(id));
                 _dbContext.SaveChanges();
-            }
         }
 
         public Haandvaerker GetById(int id)
@@ -63,13 +60,10 @@ namespace Delopgaveprojekt.Repositories
             return haandvaerkers;
         }
 
-        public void UpdateHaandvaerker(Haandvaerker haandvaerker)
+        public void UpdateHaandvaerker(int id)
         {
-            if (haandvaerker != null)
-            {
-                _dbContext.Haandvaerkers.Update(haandvaerker);
-                _dbContext.SaveChanges();
-            }
+            _dbContext.Haandvaerkers.Update(_dbContext.Haandvaerkers.Find(id));
+            _dbContext.SaveChanges();
         }
     }
 }

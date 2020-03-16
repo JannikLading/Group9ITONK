@@ -45,17 +45,17 @@ namespace Delopgaveprojekt.Controllers
         }
 
         // PUT: api/Vaerktoej/5
-        [HttpPut]
-        public void Put([FromBody] Models.Vaerktoej vt)
+        [HttpPut("{id}")]
+        public void Put(int id)
         {
-            _vaerktoejRepository.UpdateVaerktoej(vt);
+            _vaerktoejRepository.UpdateVaerktoej(id);
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete]
-        public void Delete([FromBody]Models.Vaerktoej vt)
+        [HttpDelete("{id}")]
+        public void Delete(int id)
         {
-            _vaerktoejRepository.DeleteVaerktoej(vt);
+            _vaerktoejRepository.DeleteVaerktoej(id);
         }
     }
 }

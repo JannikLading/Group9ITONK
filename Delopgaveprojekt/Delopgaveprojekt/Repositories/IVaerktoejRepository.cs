@@ -11,7 +11,7 @@ namespace Delopgaveprojekt.Repositories
         void AddVaerktoej(Vaerktoej vaerktoej);
         List<Vaerktoej> GetVaerktoejs();
         Vaerktoej GetById(int id);
-        void UpdateVaerktoej(Vaerktoej vaerktoej);
-        void DeleteVaerktoej(Vaerktoej vt);
+        void UpdateVaerktoej(int id);
+        void DeleteVaerktoej(int id);
     }
 }

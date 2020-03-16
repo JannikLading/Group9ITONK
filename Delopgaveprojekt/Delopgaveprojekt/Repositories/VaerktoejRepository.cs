@@ -19,13 +19,10 @@ namespace Delopgaveprojekt.Repositories
             _dbContext.Vaerktoejs.Add(vaerktoej);
             _dbContext.SaveChanges();
         }
-        public void DeleteVaerktoej(Vaerktoej vt)
+        public void DeleteVaerktoej(int id)
         {
-            if (vt != null)
-            {
-                _dbContext.Vaerktoejs.Remove(vt);
+                _dbContext.Vaerktoejs.Remove(_dbContext.Vaerktoejs.Find(id));
                 _dbContext.SaveChanges();
-            }
         }
         public Vaerktoej GetById(int id)
         {
@@ -40,13 +37,10 @@ namespace Delopgaveprojekt.Repositories
             return _dbContext.Vaerktoejs.ToList();
         }
 
-        public void UpdateVaerktoej(Vaerktoej vaerktoej)
+        public void UpdateVaerktoej(int id)
         {
-            if (vaerktoej != null)
-            {
-                _dbContext.Vaerktoejs.Update(vaerktoej);
-                _dbContext.SaveChanges();
-            }
+            _dbContext.Vaerktoejs.Update(_dbContext.Vaerktoejs.Find(id));
+            _dbContext.SaveChanges();
         }
     }
 }

@@ -6,13 +6,16 @@ metadata:
     app: backend-g9
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: backend-g9
   template:
     metadata:
       labels:
         app: backend-g9
     spec:
       containers:
-        - image: "docker.io/nichlaes/backendimage:v1"
+        - image: "docker.io/nichlaes/backendimage:latest"
           imagePullPolicy: Always
           name: backend-g9
           ports:

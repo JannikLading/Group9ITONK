@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: delopgaveprojektbackend   
+  name: delopgaveprojektbackend-g9   
   labels:
     app: backend-g9
 spec:
@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: backend-g9  
+    name: backend-service-g9  
     labels: 
 spec:
   selector:

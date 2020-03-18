@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: delopgaveprojektfrontend   
+  name: delopgaveprojektfrontend-g9   
   labels:
     app: frontend-g9
 spec:
@@ -25,7 +25,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: delopgaveprojektfrontend  
+    name: frontend-service-g9  
     labels: 
 spec:
   selector:

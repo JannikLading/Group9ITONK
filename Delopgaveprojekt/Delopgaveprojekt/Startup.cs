@@ -47,7 +47,7 @@ namespace Delopgaveprojekt
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
                     //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                    options.UseSqlServer("Server=mysql-service;Database=haandvaerkers;User ID=SA;Password=123456;MultipleActiveResultSets=true");
+                    options.UseSqlServer("Server=mysql-service-g9;Database=haandvaerkers;User ID=SA;Password=123456;MultipleActiveResultSets=true");
                     //options.UseInMemoryDatabase("haandvaerkers");
                 }
             );

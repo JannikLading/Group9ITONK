@@ -40,13 +40,14 @@ namespace Delopgaveprojekt
                     builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); 
                 });
             });
-            var host = "http://mysql-service";
+            var host = "mysql-service";
             var port = "3306";
             var paasword = "secret";
 
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
-                    options.UseMySql($"Server={host};Uid=root;Pwd={paasword};Port={port};Database=haandvaerkers");
+                    //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
+                    options.UseSqlServer("Server=mysql-service;Database=haandvaerkers;User ID=SA;Password=123456;MultipleActiveResultSets=true");
                     //options.UseInMemoryDatabase("haandvaerkers");
                 }
             );

@@ -28,26 +28,27 @@ spec:
         app: mysql
     spec:
       containers:
-        - name: mysql
-          image: mysql:5.7
-          ports:
-            - containerPort: 3306
-          volumeMounts:
-            - mountPath: "/var/lib/mysql"
-              subPath: "mysql"
-              name: mysql-data
-          env:
-            - name: MYSQL_ROOT_PASSWORD
-              value: secret
-            - name: MYSQL_USER 
-              value: root
-            - name: MYSQL_PASSWORD
-              value: secret
+      - name: mysql
+        image: mysql:5.7
+        ports:
+        - containerPort: 3306
+        volumeMounts:
+        - mountPath: "/var/lib/mysql"
+          subPath: "mysql"
+          name: mysql-data
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: secret
+        - name: MYSQL_DATABASE
+          value: haandvaerkers
+        - name: MYSQL_USER
+          value: user
+        - name: MYSQL_PASSWORD
+          value: secret
       volumes:
-        - name: mysql-data
-          persistentVolumeClaim:
-            claimName: mysql-data-disk
-
+      - name: mysql-data
+        persistentVolumeClaim:
+          claimName: mysql-data-disk
 ---
 apiVersion: v1
 kind: Service

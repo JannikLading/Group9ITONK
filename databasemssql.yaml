@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mssql-g9
-        image: mcr.microsoft.com/mssql/server:2017-latest
+        image: mcr.microsoft.com/mssql/server:2017-CU19-ubuntu-16.04
         ports:
         - containerPort: 1433
         env:
@@ -26,7 +26,7 @@ spec:
         - name: ACCEPT_EULA
           value: "Y"
         - name: SA_PASSWORD
-          value: "123456" 
+          value: "Group9database" 
         - name: MSSQL_DATA_DIR
           value: /var/opt/mssql/mdf
         - name: MSSQL_LOG_DIR
@@ -61,3 +61,39 @@ spec:
       port: 1433
       targetPort: 1433
   type: LoadBalancer
+---
+    #mssql base volume claim: mssql-base-volume.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-base-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+---
+#mssql data volume claim: mssql-mdf-volume.yaml
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-mdf-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 8Gi
+---
+#mssql logs volume claim: mssql-ldf-volume.yaml	  
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-ldf-volume
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 4Gi	  

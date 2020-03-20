@@ -43,9 +43,9 @@ namespace Delopgaveprojekt.Repositories
             return _dbContext.Vaerktoejskasses.ToList();
         }
 
-        public void UpdateVaerktoejskasse(int id)
+        public void UpdateVaerktoejskasse(Vaerktoejskasse vk)
         {
-            _dbContext.Vaerktoejskasses.Update(_dbContext.Vaerktoejskasses.Find(id));
+            _dbContext.Vaerktoejskasses.Update(vk);
             _dbContext.SaveChanges();
         }
     }

@@ -32,6 +32,6 @@ spec:
     app: frontend-g9
   ports:
     - protocol: TCP
-      port: 80
+      port: 69
       targetPort: 80
   type: LoadBalancer

@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mssql-g9-deployment
+  namespace: itonk-ap1-gr09
   labels:
     app: mssql-g9
 spec:

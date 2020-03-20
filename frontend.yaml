@@ -1,7 +1,8 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: delopgaveprojektfrontend-g9   
+  name: delopgaveprojektfrontend-g9  
+  namespace: itonk-ap1-gr09 
   labels:
     app: frontend-g9
 spec:

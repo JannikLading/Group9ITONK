@@ -60,9 +60,9 @@ namespace Delopgaveprojekt.Repositories
             return haandvaerkers;
         }
 
-        public void UpdateHaandvaerker(int id)
+        public void UpdateHaandvaerker(Haandvaerker hv)
         {
-            _dbContext.Haandvaerkers.Update(_dbContext.Haandvaerkers.Find(id));
+            _dbContext.Haandvaerkers.Update(hv);
             _dbContext.SaveChanges();
         }
     }

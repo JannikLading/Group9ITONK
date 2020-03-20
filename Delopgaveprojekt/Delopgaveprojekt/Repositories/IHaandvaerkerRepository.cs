@@ -12,6 +12,6 @@ namespace Delopgaveprojekt.Repositories
         List<Haandvaerker> GetHaandvaerkers();
         Haandvaerker GetById(int id);
         void UpdateHaandvaerker(int id);
-        void DeleteHaandvaerker(int id);
+        void DeleteHaandvaerker(Haandvaerker hv);
     }
 }

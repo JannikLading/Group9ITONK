@@ -52,9 +52,9 @@ namespace Delopgaveprojekt.Controllers
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(int id, [FromBody]Models.Haandvaerker hv)
         {
-            _haandvaerkerRepository.DeleteHaandvaerker(id);
+            _haandvaerkerRepository.DeleteHaandvaerker(hv);
         }
     }
 }

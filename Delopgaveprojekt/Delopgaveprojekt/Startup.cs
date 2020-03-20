@@ -37,7 +37,7 @@ namespace Delopgaveprojekt
             {
                 options.AddPolicy(MyAllowSpecificaticOrigins, builder =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); 
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials(); 
                 });
             });
             var host = "mysql-service";

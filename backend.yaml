@@ -18,8 +18,13 @@ spec:
         - image: "docker.io/nichlaes/backendimage:latest"
           imagePullPolicy: Always
           name: backend-g9
+          resources:
+            limits:
+              cpu: "1"
+            requests:
+              cpu: "0.1"
           ports:
-            - containerPort: 1337
+            - containerPort: 80
 ---
 apiVersion: v1
 kind: Service
@@ -31,7 +36,7 @@ spec:
     app: backend-g9
   ports:
     - protocol: TCP
-      port: 1337
-      targetPort: 1337
+      port: 80
+      targetPort: 80
   type: LoadBalancer
             

@@ -37,9 +37,9 @@ namespace Delopgaveprojekt.Repositories
             return _dbContext.Vaerktoejs.ToList();
         }
 
-        public void UpdateVaerktoej(int id)
+        public void UpdateVaerktoej(Vaerktoej vt)
         {
-            _dbContext.Vaerktoejs.Update(_dbContext.Vaerktoejs.Find(id));
+            _dbContext.Vaerktoejs.Update(vt);
             _dbContext.SaveChanges();
         }
     }

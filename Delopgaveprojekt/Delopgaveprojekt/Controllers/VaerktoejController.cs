@@ -46,9 +46,9 @@ namespace Delopgaveprojekt.Controllers
 
         // PUT: api/Vaerktoej/5
         [HttpPut("{id}")]
-        public void Put(int id)
+        public void Put(int id, [FromBody]Models.Vaerktoej vt)
         {
-            _vaerktoejRepository.UpdateVaerktoej(id);
+            _vaerktoejRepository.UpdateVaerktoej(vt);
         }
 
         // DELETE: api/ApiWithActions/5

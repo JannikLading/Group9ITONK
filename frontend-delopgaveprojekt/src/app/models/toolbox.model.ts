@@ -10,5 +10,5 @@ export class ToolBox {
     public vtkFarve: string,
     public Vaerktoej: Tool[],
     public vtkEjesAf?: number
-  ) {}
+  ) { }
 }

@@ -7,5 +7,5 @@ export class Tool {
     public vtSerienummer: string,
     public vtType: string,
     public liggerIvtk?: number
-  ) {}
+  ) { }
 }

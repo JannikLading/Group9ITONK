@@ -11,7 +11,21 @@
       Anskaffet:
     </th>
     <th>
+      Fabrikat:
+    </th>
+    <th>
+      Model:
+    </th>
+    <th>
+      Serienummer:
+    </th>
+    <th>
+      Type:
+    </th>
+    <th>
       Ligger i Værktøjkasse(ID):
+    </th>
+    <th>
     </th>
   </tr>
   <tr *ngFor="let tool of tools">
@@ -22,9 +36,22 @@
       {{tool.vtAnskaffet}}
     </td>
     <td>
+      {{tool.vtFabrikat}}
+    </td>
+    <td>
+      {{tool.vtModel}}
+    </td>
+    <td>
+      {{tool.vtSerienummer}}
+    </td>
+    <td>
+      {{tool.vtType}}
+    </td>
+    <td>
       {{tool.liggerIvtk}}
-      <button class="btn btn-danger" onclick="deleteTool(tool)" style="padding: 0px 2px;"><i
-          class="fas fa-times"></i></button>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="deleteTool(tool)">Delete</button>
     </td>
   </tr>
 </table>
@@ -42,7 +69,21 @@
       Anskaffet:
     </th>
     <th>
+      Fabrikat:
+    </th>
+    <th>
+      Model:
+    </th>
+    <th>
+      Serienummer:
+    </th>
+    <th>
+      Farve:
+    </th>
+    <th>
       Ejes af Håndværker(ID):
+    </th>
+    <th>
     </th>
   </tr>
   <tr *ngFor="let tbx of toolboxes">
@@ -53,9 +94,22 @@
       {{tbx.vtkAnskaffet}}
     </td>
     <td>
+      {{tbx.vtkFabrikat}}
+    </td>
+    <td>
+      {{tbx.vtkModel}}
+    </td>
+    <td>
+      {{tbx.vtkSerienummer}}
+    </td>
+    <td>
+      {{tbx.vtkFarve}}
+    </td>
+    <td>
       {{tbx.vtkEjesAf}}
-      <button class="btn btn-danger" onclick="deleteToolBox(tbx)" style="padding: 0px 2px;"><i
-          class="fas fa-times"></i></button>
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="deleteToolBox(tbx)">Delete</button>
     </td>
   </tr>
 </table>
@@ -73,7 +127,18 @@
       Ansættelsesdato:
     </th>
     <th>
+      hvEfternavn:
+    </th>
+    <th>
       Fagområde:
+    </th>
+    <th>
+      Fornavn:
+    </th>
+    <th>
+      Værktøjskasse:
+    </th>
+    <th>
     </th>
   </tr>
   <tr *ngFor="let man of craftsmen">
@@ -84,9 +149,19 @@
       {{man.hvAnsaettelsedato}}
     </td>
     <td>
+      {{man.hvEfternavn}}
+    </td>
+    <td>
       {{man.hvFagomraade}}
-      <button class="btn btn-danger" onclick="deleteCraftman(man)" style="padding: 0px 2px;"><i
-          class="fas fa-times"></i></button>
+    </td>
+    <td>
+      {{man.hvFornavn}}
+    </td>
+    <td>
+      {{man.vaerktoejskasse}}
+    </td>
+    <td>
+      <button class="btn btn-danger" (click)="deleteCraftman(man)">Delete</button>
     </td>
   </tr>
 </table>

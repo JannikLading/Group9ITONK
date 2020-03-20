@@ -1,8 +1,8 @@
 export const environment = {
   production: true,
   ENDPOINT: {
-    TOOL: "https://localhost:5001/api/Vaerktoej",
-    TOOLBOX: "https://localhost:5001/api/Vearktoejskasse",
-    CRAFTSMAN: "https://localhost:5001/api/Haandvaerker"
+    TOOL: "http://localhost:69/api/Vaerktoej",
+    TOOLBOX: "http://localhost:69/api/Vearktoejskasse",
+    CRAFTSMAN: "http://localhost:69/api/Haandvaerker"
   }
 };

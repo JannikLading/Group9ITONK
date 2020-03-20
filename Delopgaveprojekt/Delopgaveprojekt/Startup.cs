@@ -37,7 +37,7 @@ namespace Delopgaveprojekt
             {
                 options.AddPolicy(MyAllowSpecificaticOrigins, builder =>
                 {
-                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials(); 
+                    builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); 
                 });
             });
             var host = "mysql-service";
@@ -47,7 +47,7 @@ namespace Delopgaveprojekt
             services.AddDbContext<AppDbContext.AppDbContext>(options =>
                 {
                     //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                    options.UseSqlServer("Server=mysql-service-g9;Database=haandvaerkers;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
+                    options.UseSqlServer("Server=35.205.44.131;Database=haandvaerkers;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
                     //options.UseInMemoryDatabase("haandvaerkers");
                 }
             );

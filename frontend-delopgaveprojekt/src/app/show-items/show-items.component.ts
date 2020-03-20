@@ -31,15 +31,15 @@ export class ShowItemsComponent implements OnInit {
   }
 
   deleteToolBox(tbx: ToolBox) {
-    this.toolboxService.deleteToolBox(tbx.vtkId);
+    this.toolboxService.deleteToolBox(tbx.vtkId).subscribe(res => console.log(res));
   }
 
   deleteTool(tool: Tool) {
-    this.toolService.deleteTool(tool.vtId);
+    this.toolService.deleteTool(tool.vtId).subscribe(res => console.log(res));
   }
 
   deleteCraftman(man: Craftsman) {
-    this.craftsmanService.deleteCraftsman(man.haandvaerkerId);
+    this.craftsmanService.deleteCraftsman(man.haandvaerkerId).subscribe(res => console.log(res));
   }
 
 }

@@ -15,7 +15,7 @@ spec:
         app: frontend-g9
     spec:
       containers:
-        - image: "docker.io/nichlaes/frontendimage:v1"
+        - image: "docker.io/nichlaes/frontendimage:latest"
           imagePullPolicy: Always
           name: frontend-g9
           ports:

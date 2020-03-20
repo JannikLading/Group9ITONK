@@ -30,7 +30,7 @@
   </tr>
   <tr *ngFor="let tool of tools">
     <td>
-      <a [routerLink]=" ['tool',tool.VTId]">{{tool.vtId}}</a>
+      <a [routerLink]=" ['tool',tool.vtId]">{{tool.vtId}}</a>
     </td>
     <td>
       {{tool.vtAnskaffet}}
@@ -143,7 +143,7 @@
   </tr>
   <tr *ngFor="let man of craftsmen">
     <td>
-      <a [routerLink]=" ['craftsman', man.HaandvaerkerId]">{{man.haandvaerkerId}} </a>
+      <a [routerLink]=" ['craftsman', man.haandvaerkerId]">{{man.haandvaerkerId}} </a>
     </td>
     <td>
       {{man.hvAnsaettelsedato}}

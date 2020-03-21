@@ -24,7 +24,7 @@ namespace Delopgaveprojekt.Controllers
 
         // GET: api/Vaerktoejskasse
         [HttpGet]
-        public List<Models.Vaerktoejskasse> Get()
+        public IEnumerable<Models.Vaerktoejskasse> Get()
         {
             return _vaerktoejskasseRepository.GetVaerktoejskasses();
         }
@@ -38,16 +38,18 @@ namespace Delopgaveprojekt.Controllers
 
         // POST: api/Vaerktoejskasse
         [HttpPost]
-        public void Post([FromBody] Models.Vaerktoejskasse vk)
+        public IActionResult Post([FromBody] Models.Vaerktoejskasse vk)
         {
             _vaerktoejskasseRepository.AddVaerktoejskasse(vk);
+            return Ok(vk);
         }
 
         // PUT: api/Vaerktoejskasse/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Models.Vaerktoejskasse vk)
+        public IActionResult Put(int id, [FromBody]Models.Vaerktoejskasse vk)
         {
             _vaerktoejskasseRepository.UpdateVaerktoejskasse(vk);
+            return Ok(vk);
         }
 
         // DELETE: api/ApiWithActions/5

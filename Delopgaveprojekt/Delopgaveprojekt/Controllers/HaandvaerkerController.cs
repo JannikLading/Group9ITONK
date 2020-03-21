@@ -24,7 +24,7 @@ namespace Delopgaveprojekt.Controllers
 
         // GET: api/<controller>
         [HttpGet]
-        public List<Models.Haandvaerker> Get()
+        public IEnumerable<Models.Haandvaerker> Get()
         {
             return _haandvaerkerRepository.GetHaandvaerkers();
         }
@@ -38,16 +38,18 @@ namespace Delopgaveprojekt.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Models.Haandvaerker hv)  
+        public IActionResult Post([FromBody]Models.Haandvaerker hv)  
         {
             _haandvaerkerRepository.AddHaandvaerker(hv);
+            return Ok(hv);
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Models.Haandvaerker hv)
+        public IActionResult Put(int id, [FromBody]Models.Haandvaerker hv)
         {
             _haandvaerkerRepository.UpdateHaandvaerker(hv);
+            return Ok(hv);
         }
 
         // DELETE api/<controller>/5

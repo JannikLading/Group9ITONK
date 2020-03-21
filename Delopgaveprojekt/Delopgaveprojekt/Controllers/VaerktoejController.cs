@@ -25,7 +25,7 @@ namespace Delopgaveprojekt.Controllers
 
         // GET: api/Vaerktoej
         [HttpGet]
-        public List<Models.Vaerktoej> Get()
+        public IEnumerable<Models.Vaerktoej> Get()
         {
             return _vaerktoejRepository.GetVaerktoejs();
         }
@@ -39,16 +39,18 @@ namespace Delopgaveprojekt.Controllers
 
         // POST: api/Vaerktoej
         [HttpPost]
-        public void Post([FromBody] Models.Vaerktoej vt)
+        public IActionResult Post([FromBody] Models.Vaerktoej vt)
         {
             _vaerktoejRepository.AddVaerktoej(vt);
+            return Ok(vt);
         }
 
         // PUT: api/Vaerktoej/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]Models.Vaerktoej vt)
+        public IActionResult Put(int id, [FromBody]Models.Vaerktoej vt)
         {
             _vaerktoejRepository.UpdateVaerktoej(vt);
+            return Ok(vt);
         }
 
         // DELETE: api/ApiWithActions/5

@@ -1,0 +1,70 @@
+﻿using Delopgaveprojekt.DbFactory;
+using Delopgaveprojekt.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace Delopgaveprojekt.Repositories
+{
+    public class HaandvaerkerRepository : IHaandvaerkerRepository
+    {
+        private readonly AppDbContext.AppDbContext _dbContext;
+
+        public HaandvaerkerRepository(AppDbContext.AppDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+        public void AddHaandvaerker(Haandvaerker haandvaerker)
+        {
+            if (haandvaerker != null)
+            {
+                _dbContext.Haandvaerkers.Add(haandvaerker);
+                _dbContext.SaveChanges();
+
+            }
+        }
+        public void DeleteHaandvaerker(int id)
+        {
+                _dbContext.Haandvaerkers.Remove(_dbContext.Haandvaerkers.Find(id));
+                _dbContext.SaveChanges();
+        }
+
+        public Haandvaerker GetById(int id)
+        {
+            if (id != 0)
+            {
+                return _dbContext.Haandvaerkers.Find(id);
+            }
+            return null;
+        }
+
+        public List<Haandvaerker> GetHaandvaerkers()
+        {
+            var haandvaerkers = new List<Haandvaerker>();
+            try
+            {
+                haandvaerkers= _dbContext.Haandvaerkers.ToList();
+            }
+            catch(Exception e)
+            {
+                haandvaerkers.Add(new Haandvaerker 
+                { 
+                    HaandvaerkerId = 0,
+                    HVAnsaettelsedato = DateTime.Now, 
+                    HVFornavn = "Kunne ikke tilgå database", 
+                    HVEfternavn = e.InnerException.ToString(),
+                    HVFagomraade = e.Message
+                });
+            }
+            return haandvaerkers;
+        }
+
+        public void UpdateHaandvaerker(Haandvaerker hv)
+        {
+            _dbContext.Haandvaerkers.Update(hv);
+            _dbContext.SaveChanges();
+        }
+    }
+}
+

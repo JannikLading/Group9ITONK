@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using TobinTaxingControl.Database;
 using TobinTaxingControl.Repositories;
+using TobinTaxingControl.Services;
 
 namespace TobinTaxingControl
 {
@@ -36,6 +37,7 @@ namespace TobinTaxingControl
             });
 
             services.AddControllers();
+            services.AddScoped<TobinTransactionService>();
             services.AddScoped<ITaxRegistrationRepository, TaxRegistrationRepository>();
 
             //services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);

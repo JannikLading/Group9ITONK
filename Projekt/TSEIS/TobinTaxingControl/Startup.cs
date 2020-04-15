@@ -6,10 +6,13 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using TobinTaxingControl.Database;
+using TobinTaxingControl.Repositories;
 
 namespace TobinTaxingControl
 {
@@ -25,11 +28,22 @@ namespace TobinTaxingControl
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
+                //options.UseSqlServer("Server=mysql-service-g9;Database=haandvaerkers;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
+                options.UseInMemoryDatabase("TaxRegistrations");
+            });
+
             services.AddControllers();
+            services.AddScoped<ITaxRegistrationRepository, TaxRegistrationRepository>();
+
+            //services.AddControllers().AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+            services.AddScoped<ITaxRegistrationRepository, TaxRegistrationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, AppDbContext context)
         {
             if (env.IsDevelopment())
             {
@@ -41,6 +55,9 @@ namespace TobinTaxingControl
             app.UseRouting();
 
             app.UseAuthorization();
+
+            //context.Database.Migrate();
+
 
             app.UseEndpoints(endpoints =>
             {

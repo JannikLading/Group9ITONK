@@ -26,7 +26,7 @@ namespace TobinTaxingControl.Repositories
 
         public List<TaxRegistration> getTaxRegistrations()
         {
-            return _dbContext.TaxRegistrations.ToList();
+            return _dbContext.TaxRegistrations.Local.ToList();
         }
 
         public void setApproved(TaxRegistration taxRegistration)

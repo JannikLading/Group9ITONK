@@ -10,7 +10,7 @@ namespace TobinTaxingControl.Database
 {
     public class AppDbContext: DbContext 
     { 
-        public AppDbContext()
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
             LoadDefaultData();
         }
@@ -18,7 +18,12 @@ namespace TobinTaxingControl.Database
 
         public void LoadDefaultData()
         {
-            
+            TaxRegistrations.Add(new TaxRegistration
+                {
+                Id = 0, 
+                Approved = false, 
+                TaxAmount = 1000 
+            });
         }
     }
 }

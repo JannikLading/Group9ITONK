@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.ComponentModel.DataAnnotations;
+//using System.Linq;
+//using System.Threading.Tasks;
 
-namespace PublicShareOwnerControl.Models
-{
-    public class StockUser
-    {
-        StockUser()
-        {
+//namespace PublicShareOwnerControl.Models
+//{
+//    public class StockUser
+//    {
+//        StockUser()
+//        {
 
-        }
+//        }
 
-        [Key]
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public StockPortefolio Portefolio { get; set; }
-        public double DisposableAmount { get; set; }
-    }
-}
+//        [Key]
+//        public int Id { get; set; }
+//        public string Name { get; set; }
+//        public StockPortefolio Portefolio { get; set; }
+//        public double DisposableAmount { get; set; }
+//    }
+//}

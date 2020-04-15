@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Delopgaveprojekt.Models
+namespace TradedShares.Models
 {
     public partial class Stock
     {

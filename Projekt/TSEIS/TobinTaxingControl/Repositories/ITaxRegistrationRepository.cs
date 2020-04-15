@@ -10,6 +10,7 @@ namespace TobinTaxingControl.Repositories
     {
         void addTaxRegistration(TaxRegistration taxRegistration);
         List<TaxRegistration> getTaxRegistrations();
+        TaxRegistration getById(int id);
         void setApproved(TaxRegistration taxRegistration);
     }
 }

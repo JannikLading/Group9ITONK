@@ -1,20 +1,20 @@
-﻿using PublicShareOwnerControl.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using TradedShares.Models;
 
 namespace StockTraderBroker.Models
 {
     public class StockTransaction
     {
-        int id;
-        Stock transactionStock;
-        int transferAmount;
-        double transferPrice;
-        StockUser stockByuer;
-        StockUser stockSeller;
-        bool approved;
+        [Key]
+        public int Id { get; set; }
+        //Stock transactionStock;
+        public int TransferAmount { get; set; }
+        public double TransferPrice { get; set; }
+        //StockUser stockByuer;
+        //StockUser stockSeller;
+        public bool Approved { get; set; }
     }
 }

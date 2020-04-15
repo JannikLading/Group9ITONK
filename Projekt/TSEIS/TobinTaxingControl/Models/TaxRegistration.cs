@@ -10,10 +10,10 @@ namespace TobinTaxingControl.Models
     public class TaxRegistration
     {
         [Key]
-        int id { get; set; }
-        StockTransaction transaction { get; set; }
-        double taxAmount { get; set; }
-        bool approved { get; set; }
+        public int Id { get; set; }
+        public StockTransaction Transaction { get; set; }
+        public double TaxAmount { get; set; }
+        public bool Approved { get; set; }
 
     }
 }

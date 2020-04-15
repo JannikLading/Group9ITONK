@@ -1,0 +1,4 @@
+gke:
+gcloud container clusters get-credentials f19itonk-3n-cluster --zone europe-west1-b --project jrtf18itonk
+
+kubectl apply -f C:\Git\Group9ONK.v2\Group9ITONK/databasemssql.yaml -n itonk-ap1-gr09

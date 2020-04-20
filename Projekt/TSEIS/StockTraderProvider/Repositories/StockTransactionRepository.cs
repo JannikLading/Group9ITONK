@@ -16,12 +16,12 @@ namespace StockTraderBroker.Repositories
         }
         public void addStockTransaction(StockTransaction stockTransaction)
         {
-            throw new NotImplementedException();
+            _dbContext.Transactions.Add(stockTransaction);
         }
 
         public StockTransaction GetTransaction(int id)
         {
-            throw new NotImplementedException();
+            return _dbContext.Transactions.Find(id);
         }
     }
 }

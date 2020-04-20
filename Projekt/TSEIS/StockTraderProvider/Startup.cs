@@ -6,10 +6,12 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using StockTraderBroker.Database;
 
 namespace StockTraderProvider
 {
@@ -25,6 +27,12 @@ namespace StockTraderProvider
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppDbContext>(options =>
+            {
+                //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
+                //options.UseSqlServer("Server=mysql-service-g9;Database=haandvaerkers;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
+                options.UseInMemoryDatabase("StockTrades");
+            });
             services.AddControllers();
         }
 

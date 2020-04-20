@@ -24,9 +24,14 @@ namespace TobinTaxingControl.Repositories
             
         }
 
+        public TaxRegistration getById(int id)
+        {
+            return _dbContext.TaxRegistrations.Find(id);
+        }
+
         public List<TaxRegistration> getTaxRegistrations()
         {
-            return _dbContext.TaxRegistrations.ToList();
+            return _dbContext.TaxRegistrations.Local.ToList();
         }
 
         public void setApproved(TaxRegistration taxRegistration)

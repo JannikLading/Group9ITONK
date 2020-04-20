@@ -23,7 +23,7 @@ namespace TobinTaxingControl.Controllers
         private readonly ILogger<TobinTaxingsController> _logger;
         private ITaxRegistrationRepository _dbContext;
         private TobinTransactionService _tobinService;
-        private HttpClient client;
+        private HttpClient client= new HttpClient();
         private readonly string TransactionApiPostString = "/api/transaction";
 
         public TobinTaxingsController(ILogger<TobinTaxingsController> logger, ITaxRegistrationRepository context, TobinTransactionService service)
@@ -31,7 +31,6 @@ namespace TobinTaxingControl.Controllers
             _logger = logger;
             _dbContext = context;
             _tobinService = service;
-            client = new HttpClient();
         }
 
         [HttpPost]

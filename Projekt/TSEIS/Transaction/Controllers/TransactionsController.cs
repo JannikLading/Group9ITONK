@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using StockTraderBroker.Models;
+using Transaction.Models;
 
 namespace Transaction.Controllers
 {
@@ -29,14 +30,31 @@ namespace Transaction.Controllers
         
         // POST: api/Transactions
         [HttpPost]
-        public async Task PostAsync([FromBody] StockTransaction transaction)
+        public async Task <IActionResult> addTransaction([FromBody] StockTransaction transaction)
         {
             string json = JsonConvert.SerializeObject(transaction);
-            //HttpResponseMessage response = await client.PostAsync(UsersApiGetUsersUri, new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PostAsync(UsersApiGetUsersUri, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            //string responseResult = await response.Content.ReadAsStringAsync();
+            string responseResult = await response.Content.ReadAsStringAsync();
 
-            var users = JsonConvert.DeserializeObject(json);
+            UsersViewModel users = (UsersViewModel)JsonConvert.DeserializeObject(responseResult);
+
+            users.buyer.Balance -= ((transaction.TransferPrice*transaction.TransferAmount)+transaction.TaxAmount);
+            users.seller.Balance += transaction.TransferPrice * transaction.TransferAmount;
+
+            string userJson = JsonConvert.SerializeObject(users);
+
+            HttpResponseMessage responseUpdate = await client.PostAsync(UsersApiUpdateUsersUri, new StringContent(userJson, Encoding.UTF8, "application/json"));
+
+            string responseResultUpdate = await response.Content.ReadAsStringAsync();
+            if (responseResultUpdate.Contains("Ok"))
+            {
+                return Ok(users);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

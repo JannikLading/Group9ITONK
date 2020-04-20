@@ -12,7 +12,7 @@ namespace TobinTaxingControl.Services
         private readonly double taxPercentage = 1.0;
         public TaxRegistration CreatetaxRegistrationFromTransaction(StockTransaction transaction)
         {
-            double tax = ((transaction.TransferAmount * transaction.TransferPrice) / 100) * taxPercentage;
+            double tax = ((transaction.StockAmount * transaction.StockPrice) / 100) * taxPercentage;
             transaction.TaxAmount = tax;
             return new TaxRegistration
             {

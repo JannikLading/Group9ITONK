@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using TradedShares.Models;
 
 namespace StockTraderBroker.Models
 {
@@ -10,12 +11,14 @@ namespace StockTraderBroker.Models
     {
         [Key]
         public int Id { get; set; }
-        //Stock transactionStock;
-        public int TransferAmount { get; set; }
-        public double TransferPrice { get; set; }
-        //StockUser stockByuer;
-        //StockUser stockSeller;
+        public int TransferStockId { get; set; }
+        public int StockAmount { get; set; }
+        public double StockPrice { get; set; }
+        public int StockBuyerId { get; set; }
+        public int StockSellerId { get; set; }
         public double TaxAmount { get; set; }
-        public bool Approved { get; set; }
+        public bool TransactionComplete { get; set; }
+        public bool StockTransferComplete { get; set; }
+
     }
 }

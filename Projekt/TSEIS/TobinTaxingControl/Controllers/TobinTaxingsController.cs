@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -36,8 +34,8 @@ namespace TobinTaxingControl.Controllers
             client = new HttpClient();
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpPost]
-        public async Task<IActionResult> AddTransactionAsync([Microsoft.AspNetCore.Mvc.FromBody] StockTransaction transaction)
+        [HttpPost]
+        public async Task<IActionResult> AddTransactionAsync([FromBody] StockTransaction transaction)
         {
             if (transaction == null)
             {
@@ -58,11 +56,12 @@ namespace TobinTaxingControl.Controllers
             }
             else
             {
-                throw new HttpResponseException(HttpStatusCode.BadRequest);
+                return BadRequest();
             }
+            
         }
 
-        [Microsoft.AspNetCore.Mvc.HttpGet("{id}")]
+        [HttpGet("{id}")]
         public bool IsApproved(int id)
         {
             var registration = _dbContext.getById(id);

@@ -15,6 +15,7 @@ namespace StockTraderBroker.Models
         public double TransferPrice { get; set; }
         //StockUser stockByuer;
         //StockUser stockSeller;
+        public double TaxAmount { get; set; }
         public bool Approved { get; set; }
     }
 }

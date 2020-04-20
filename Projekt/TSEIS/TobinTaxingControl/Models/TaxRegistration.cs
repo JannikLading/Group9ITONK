@@ -11,7 +11,7 @@ namespace TobinTaxingControl.Models
     {
         [Key]
         public int Id { get; set; }
-        public StockTransaction Transaction { get; set; }
+        public int StockTransactionId { get; set; }
         public double TaxAmount { get; set; }
         public bool Approved { get; set; }
 

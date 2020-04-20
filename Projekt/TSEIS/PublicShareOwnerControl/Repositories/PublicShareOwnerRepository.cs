@@ -53,8 +53,8 @@ namespace PublicShareOwnerControl.Repositories
             _dbContext.StockPortefolios.Add(new StockPortefolio()
             {
                 StockShares = stockShares1,
-                TotalAmount
-            })
+                //TotalAmount
+            });
         }
     }
 }

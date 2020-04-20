@@ -12,16 +12,20 @@ namespace PublicShareOwnerControl.Database
     {
         public AppDbContext()
         {
-            LoadDefaultData();
         }
-        public DbSet<StockUser> StockUsers { get; set; }
-        public DbSet<StockPortefolio> StockPortefolios{ get; set; }
+        public DbSet<StockTrader> StockTraders { get; set; }
+        public DbSet<StockPortefolio> StockPortefolios { get; set; }
         public DbSet<Stock> Stocks { get; set; }
-
 
         public void LoadDefaultData()
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StockTrader>().HasKey(x => x.Id);
+            modelBuilder.Entity<StockTrader>().HasOne(x => x.Portefolio).WithOne();
         }
     }
 }

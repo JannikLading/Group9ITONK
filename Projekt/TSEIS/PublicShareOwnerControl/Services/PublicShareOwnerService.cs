@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Microsoft.Extensions.Logging;
+using PublicShareOwnerControl.Models;
+using PublicShareOwnerControl.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,9 +10,18 @@ namespace PublicShareOwnerControl.Services
 {
     public class PublicShareOwnerService : IPublicShareOwnerService
     {
-        public void AddUser()
+        private ILogger<PublicShareOwnerService> _logger;
+        private IPublicShareOwnerRepository _publicShareOwnerRepository;
+
+        PublicShareOwnerService(ILogger<PublicShareOwnerService> logger, IPublicShareOwnerRepository publicShareOwnerRepository)
         {
-            throw new NotImplementedException();
+            _logger = logger;
+            _publicShareOwnerRepository = publicShareOwnerRepository;
+        }
+
+        public void AddUser(StockTrader stockUser)
+        {
+            _publicShareOwnerRepository.AddStockTrader(stockUser);
         }
 
         public void DeleteUser()
@@ -17,14 +29,18 @@ namespace PublicShareOwnerControl.Services
             throw new NotImplementedException();
         }
 
-        public void GetStocksByOwner(int userId)
+        public StockTrader GetStockTrader(int userId)
         {
-            throw new NotImplementedException();
+            return _publicShareOwnerRepository.GetStockTrader(userId);
+        }
+        public List<StockTrader> GetStockTraders()
+        {
+            return _publicShareOwnerRepository.GetStockTraders();
         }
 
-        public void UpdateUser()
+        public void UpdateStockTrader(StockTrader stockTrader)
         {
-            throw new NotImplementedException();
+            _publicShareOwnerRepository.UpdateStockTrader(stockTrader);
         }
     }
 }

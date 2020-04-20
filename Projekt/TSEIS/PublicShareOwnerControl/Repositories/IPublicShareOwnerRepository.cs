@@ -8,9 +8,9 @@ namespace PublicShareOwnerControl.Repositories
 {
     interface IPublicShareOwnerRepository
     {
-        void AddStockUser(StockUser user);
-        List<StockUser> GetStockUsers();
-        StockUser GetStockUser(int id);
-        StockUser UpdateStockUser(StockUser newStockUser);
+        void AddStockTrader(StockTrader user);
+        List<StockTrader> GetStockTraders();
+        StockTrader GetStockTrader(int id);
+        StockTrader UpdateStockTrader(StockTrader newStockUser);
     }
 }

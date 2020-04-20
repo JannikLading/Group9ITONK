@@ -11,31 +11,50 @@ namespace PublicShareOwnerControl.Repositories
     {
         private readonly AppDbContext _dbContext;
 
-        public void AddStockUser(StockUser user)
+        PublicShareOwnerRepository(AppDbContext appDbContext)
         {
-            if (GetStockUser(user.Id) == null)
-                _dbContext.StockUsers.Add(user);
+            _dbContext = appDbContext;
         }
 
-        public StockUser GetStockUser(int id)
+        public void AddStockTrader(StockTrader user)
         {
-            return _dbContext.StockUsers.FirstOrDefault(u => u.Id == id);
+            if (GetStockTrader(user.Id) == null)
+                _dbContext.StockTraders.Add(user);
         }
 
-        public List<StockUser> GetStockUsers()
+        public StockTrader GetStockTrader(int id)
         {
-            return _dbContext.StockUsers.ToList();
+            return _dbContext.StockTraders.FirstOrDefault(u => u.Id == id);
         }
 
-        public StockUser UpdateStockUser(StockUser newStockUser)
+        public List<StockTrader> GetStockTraders()
         {
-            var oldStockUser = _dbContext.StockUsers.FirstOrDefault(u => u.Id == newStockUser.Id);
-            if(oldStockUser != null)
+            return _dbContext.StockTraders.ToList();
+        }
+
+        public StockTrader UpdateStockTrader(StockTrader newStockTrader)
+        {
+            var oldStockTrader = _dbContext.StockTraders.FirstOrDefault(u => u.Id == newStockTrader.Id);
+            if(oldStockTrader != null)
             {
-                oldStockUser = newStockUser;
+                oldStockTrader = newStockTrader;
                 _dbContext.SaveChangesAsync();
             }
-            return oldStockUser;
+            return oldStockTrader;
+        }
+
+        void loadData() {
+
+            var stockShares1 = new Dictionary<int, int>();
+            stockShares1.Add(1, 2);
+            stockShares1.Add(2, 3);
+            stockShares1.Add(3, 4);
+
+            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            {
+                StockShares = stockShares1,
+                TotalAmount
+            })
         }
     }
 }

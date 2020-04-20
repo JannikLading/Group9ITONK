@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace PublicShareOwnerControl.Models
 {
-    public class StockUser
+    public class StockTrader
     {
-        StockUser()
+        StockTrader()
         {
 
         }
 
         [Key]
         public int Id { get; set; }
-        public string Name { get; set; }
+        public int UserId { get; set; }
         public StockPortefolio Portefolio { get; set; }
-        public double DisposableAmount { get; set; }
     }
 }

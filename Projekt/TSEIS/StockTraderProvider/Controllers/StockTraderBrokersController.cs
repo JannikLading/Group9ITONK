@@ -36,8 +36,14 @@ namespace StockTraderBroker.Controllers
         [HttpPost]
         public IActionResult AddTrade([FromBody] StockTrade trade)
         {
-            _stockTraderBrokerService.AddStockTrade(trade);
-            return Ok(trade); 
+            if (trade == null)
+            {
+                _stockTraderBrokerService.AddStockTrade(trade);
+                return Ok(trade);
+            } else
+            {
+                return BadRequest();
+            }
         }
 
         //GET: api/StockTraderBrokers

@@ -30,7 +30,6 @@ namespace StockTraderBroker.Controllers
             _stockTraderBrokerService = stockTraderBrokerService;
         }
 
-
         //POST: api/StockTraderBrokers
         [HttpPost]
         public IActionResult AddTrade([FromBody] SellerDto sellerDto)
@@ -52,11 +51,11 @@ namespace StockTraderBroker.Controllers
             return _stockTraderBrokerService.GetStockTrades(); 
         }
 
-        //PUT: api/StockTrade/id
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AddBuyerToTrade(int id, [FromBody] int buyerId)
+        //PUT: api/StockTraderBrokers/id
+        [HttpPut]
+        public async Task<IActionResult> AddBuyerToTrade([FromBody] BuyerDto buyerdto)
         {
-            StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(id, buyerId);
+            StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(buyerdto.StockTradeId, buyerdto.StockBuyerId);
 
             if (stockTrade == null)
             {

@@ -7,7 +7,7 @@ namespace StockTraderBroker.Models
 {
     public class BuyerDto
     {
-        public int TransferStockId { get; set; }
+        public int StockTradeId { get; set; }
         public int StockBuyerId { get; set; }
     }
 }

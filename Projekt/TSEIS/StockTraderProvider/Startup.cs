@@ -32,8 +32,8 @@ namespace StockTraderProvider
             services.AddDbContext<AppDbContext>(options =>
             {
                 //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                options.UseSqlServer("Server=192.168.176.129;Database=Stocks;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
-                //options.UseInMemoryDatabase("StockTrades");
+                //options.UseSqlServer("Server=192.168.176.129;Database=Stocks;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                options.UseInMemoryDatabase("StockTrades");
             });
             services.AddControllers();
             services.AddScoped<IStockTraderBrokerService, StockTraderBrokerService>();
@@ -54,7 +54,7 @@ namespace StockTraderProvider
 
             app.UseAuthorization();
 
-            context.Database.Migrate();
+            //context.Database.Migrate();
 
             app.UseEndpoints(endpoints =>
             {

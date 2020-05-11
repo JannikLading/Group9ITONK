@@ -7,7 +7,7 @@ using TradedShares.Models;
 
 namespace StockTraderBroker.Models
 {
-    public class StockTransaction
+    public class StockTrade
     {
         [Key]
         public int Id { get; set; }

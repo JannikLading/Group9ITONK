@@ -8,7 +8,7 @@ namespace StockTraderBroker.Repositories
 {
     public interface IStockTransactionRepository
     {
-        void addStockTransaction(StockTransaction stockTransaction);
-        StockTransaction GetTransaction(int id);
+        void addStockTransaction(StockTrade stockTransaction);
+        StockTrade GetTransaction(int id);
     }
 }

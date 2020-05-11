@@ -43,18 +43,81 @@ namespace PublicShareOwnerControl.Repositories
             return oldStockTrader;
         }
 
-        void loadData() {
+        private void loadData() {
 
             var stockShares1 = new Dictionary<int, int>();
             stockShares1.Add(1, 2);
             stockShares1.Add(2, 3);
             stockShares1.Add(3, 4);
 
+            int totalAmount = 0;
+            int totalPrice = 0;
+            foreach(var key in stockShares1.Keys)
+            {
+                int amount = 0;
+                stockShares1.TryGetValue(key, out amount);
+                totalAmount += amount;
+                totalPrice += amount * key * 100;
+            }
+
             _dbContext.StockPortefolios.Add(new StockPortefolio()
             {
                 StockShares = stockShares1,
-                TotalAmount
-            })
+                TotalAmount = totalAmount,
+                TotalPrice = totalPrice
+            });
+
+            var stockShares2 = new Dictionary<int, int>();
+            stockShares2.Add(4, 1);
+            stockShares2.Add(5, 2);
+            stockShares2.Add(6, 3);
+
+            totalAmount = 0;
+            totalPrice = 0;
+            foreach (var key in stockShares2.Keys)
+            {
+                int amount = 0;
+                stockShares2.TryGetValue(key, out amount);
+                totalAmount += amount;
+                totalPrice += amount * key * 100;
+            }
+
+            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            {
+                StockShares = stockShares2,
+                TotalAmount = totalAmount,
+                TotalPrice = totalPrice
+            });
+
+            var stockShares3 = new Dictionary<int, int>();
+            stockShares3.Add(1, 2);
+            stockShares3.Add(3, 3);
+            stockShares3.Add(4, 2);
+            stockShares3.Add(6, 1);
+
+            totalAmount = 0;
+            totalPrice = 0;
+            foreach (var key in stockShares3.Keys)
+            {
+                int amount = 0;
+                stockShares3.TryGetValue(key, out amount);
+                totalAmount += amount;
+                totalPrice += amount * key * 100;
+            }
+
+            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            {
+                StockShares = stockShares3,
+                TotalAmount = totalAmount,
+                TotalPrice = totalPrice
+            });
+
+            var portfolios = _dbContext.StockPortefolios.ToList();
+            _dbContext.StockTraders.Add(new StockTrader()
+            {
+                UserId = 1,
+                Portefolio = portfolios[0],
+            });
         }
     }
 }

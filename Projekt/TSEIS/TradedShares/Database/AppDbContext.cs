@@ -15,12 +15,12 @@ namespace TradedShares.Database
 
         public void LoadDefaultData()
         {
-            Stock vestas = new Stock { Name = "Vestas Wind System", Price = 584.60 };
-            Stock danskeBank = new Stock { Name = "Danske Bank", Price = 72.70 };
-            Stock carlsbergB = new Stock { Name = "Carlsberg B", Price = 810.20 };
-            Stock mearskA = new Stock { Name = "A.P. Møller - Mærsk A", Price = 5930.00 };
-            Stock mearskb = new Stock { Name = "A.P. Møller - Mærsk B", Price = 6380.00 };
-            Stock novoNordisk = new Stock { Name = "Novo Nordisk", Price = 413.90 };
+            Stock vestas = new Stock { Name = "Vestas Wind System", Price = 100.00 };
+            Stock danskeBank = new Stock { Name = "Danske Bank", Price = 200.00 };
+            Stock carlsbergB = new Stock { Name = "Carlsberg B", Price = 300.00 };
+            Stock mearskA = new Stock { Name = "A.P. Møller - Mærsk A", Price = 400.00};
+            Stock mearskb = new Stock { Name = "A.P. Møller - Mærsk B", Price = 500.00 };
+            Stock novoNordisk = new Stock { Name = "Novo Nordisk", Price = 600.00 };
             Stocks.Add(vestas);
             Stocks.Add(danskeBank);
             Stocks.Add(carlsbergB);

@@ -23,7 +23,7 @@ namespace TobinTaxingControl.Controllers
         private readonly ILogger<TobinTaxingsController> _logger;
         private ITaxRegistrationRepository _dbContext;
         private TobinTransactionService _tobinService;
-        private HttpClient client;
+        private HttpClient client= new HttpClient();
         private readonly string TransactionApiPostString = "/api/transaction";
 
         public TobinTaxingsController(ILogger<TobinTaxingsController> logger, ITaxRegistrationRepository context, TobinTransactionService service)
@@ -31,7 +31,6 @@ namespace TobinTaxingControl.Controllers
             _logger = logger;
             _dbContext = context;
             _tobinService = service;
-            client = new HttpClient();
         }
 
         [HttpPost]
@@ -49,7 +48,7 @@ namespace TobinTaxingControl.Controllers
             HttpResponseMessage response = await client.PostAsync(TransactionApiPostString, new StringContent(json, Encoding.UTF8, "application/json"));
 
             string responseResult = await response.Content.ReadAsStringAsync();
-            if (responseResult.Contains("OK"))
+            if (responseResult.Contains("Ok"))
             {
                 _dbContext.addTaxRegistration(newtaxRegistration);
                 return Ok(newtaxRegistration);

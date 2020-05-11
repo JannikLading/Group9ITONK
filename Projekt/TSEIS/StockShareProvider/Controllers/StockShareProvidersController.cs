@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using StockShareProvider.Models;
+using StockTraderBroker.Models;
 
 namespace StockShareProvider.Controllers
 {
@@ -17,7 +17,7 @@ namespace StockShareProvider.Controllers
     {
         private HttpClient client = new HttpClient();
         private string TraderBorkerApiPostTrade = "some Uri";
-        public async Task<IActionResult> AddTradeAsync([FromBody] StockTradeDto stock)
+        public async Task<IActionResult> AddTradeAsync([FromBody] SellerDto stock)
         {
             if(stock == null)
             {

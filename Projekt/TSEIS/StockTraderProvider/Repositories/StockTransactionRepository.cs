@@ -14,12 +14,12 @@ namespace StockTraderBroker.Repositories
         {
             _dbContext = dbContext;
         }
-        public void addStockTransaction(StockTransaction stockTransaction)
+        public void addStockTransaction(StockTrade stockTransaction)
         {
             _dbContext.Transactions.Add(stockTransaction);
         }
 
-        public StockTransaction GetTransaction(int id)
+        public StockTrade GetTransaction(int id)
         {
             return _dbContext.Transactions.Find(id);
         }

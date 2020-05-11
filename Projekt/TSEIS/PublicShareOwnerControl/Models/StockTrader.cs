@@ -8,7 +8,7 @@ namespace PublicShareOwnerControl.Models
 {
     public class StockTrader
     {
-        StockTrader()
+        public StockTrader()
         {
 
         }

@@ -42,5 +42,10 @@ namespace PublicShareOwnerControl.Services
         {
             _publicShareOwnerRepository.UpdateStockTrader(stockTrader);
         }
+
+        public void ApproveTrade()
+        {
+
+        }
     }
 }

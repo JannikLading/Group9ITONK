@@ -45,9 +45,15 @@ namespace StockTraderBroker.Services
         public StockTrade UpdateBuyerOnStockTrade(int stockTradeId, int buyerId)
         {
             StockTrade stockTrade = _repo.GetById(stockTradeId);
-            stockTrade.StockBuyerId = buyerId;
-            _repo.UpdateStockTrade(stockTrade);
-            return stockTrade; 
+            if (stockTrade != null)
+            {
+                stockTrade.StockBuyerId = buyerId;
+                _repo.UpdateStockTrade(stockTrade);
+                return stockTrade;
+            } else
+            {
+                return null;
+            }
         }
     }
 }

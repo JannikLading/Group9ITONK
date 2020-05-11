@@ -17,8 +17,18 @@ namespace StockTraderBroker.Services
             this._repo = repo;
         }
 
-        public void AddStockTrade(StockTrade stockTrade)
+        public void AddStockTrade(SellerDto sellerDto)
         {
+            StockTrade stockTrade = new StockTrade
+            {
+                StockSellerId = sellerDto.StockSellerId,
+                TransferStockId = sellerDto.TransferStockId,
+                StockAmount = sellerDto.StockAmount,
+                StockPrice = sellerDto.StockPrice,
+                StockTransferComplete = false,
+                TransactionComplete = false
+            };
+
             _repo.AddStockTrade(stockTrade);
         }
 

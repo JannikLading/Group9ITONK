@@ -18,7 +18,6 @@ namespace StockTraderBroker.Controllers
     [ApiController]
     public class StockTraderBrokersController : ControllerBase
     {
-
         private HttpClient _client = new HttpClient();
         private string _tobinApiPostString = "some Uri";
 
@@ -34,12 +33,12 @@ namespace StockTraderBroker.Controllers
 
         //POST: api/StockTraderBrokers
         [HttpPost]
-        public IActionResult AddTrade([FromBody] StockTrade trade)
+        public IActionResult AddTrade([FromBody] SellerDto sellerDto)
         {
-            if (trade == null)
+            if (sellerDto == null)
             {
-                _stockTraderBrokerService.AddStockTrade(trade);
-                return Ok(trade);
+                _stockTraderBrokerService.AddStockTrade(sellerDto);
+                return Ok(sellerDto);
             } else
             {
                 return BadRequest();

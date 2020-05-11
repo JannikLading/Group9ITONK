@@ -48,7 +48,7 @@ namespace TobinTaxingControl.Controllers
             HttpResponseMessage response = await client.PostAsync(TransactionApiPostString, new StringContent(json, Encoding.UTF8, "application/json"));
 
             string responseResult = await response.Content.ReadAsStringAsync();
-            if (responseResult.Contains("OK"))
+            if (responseResult.Contains("Ok"))
             {
                 _dbContext.addTaxRegistration(newtaxRegistration);
                 return Ok(newtaxRegistration);

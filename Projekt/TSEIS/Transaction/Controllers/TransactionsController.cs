@@ -39,8 +39,8 @@ namespace Transaction.Controllers
 
             UsersViewModel users = (UsersViewModel)JsonConvert.DeserializeObject(responseResult);
 
-            users.buyer.Balance -= ((transaction.TransferPrice*transaction.TransferAmount)+transaction.TaxAmount);
-            users.seller.Balance += transaction.TransferPrice * transaction.TransferAmount;
+            users.buyer.Balance -= ((transaction.StockPrice*transaction.StockAmount)+transaction.TaxAmount);
+            users.seller.Balance += transaction.StockPrice * transaction.StockAmount;
 
             string userJson = JsonConvert.SerializeObject(users);
 

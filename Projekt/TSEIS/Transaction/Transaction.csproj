@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\StockTraderProvider\StockTraderBroker.csproj" />
+    <ProjectReference Include="..\Users\Users.csproj" />
   </ItemGroup>
 
 

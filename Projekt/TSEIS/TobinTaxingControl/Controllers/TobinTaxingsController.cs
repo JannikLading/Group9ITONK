@@ -34,7 +34,7 @@ namespace TobinTaxingControl.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddTransactionAsync([FromBody] StockTransaction transaction)
+        public async Task<IActionResult> AddTransactionAsync([FromBody] StockTrade transaction)
         {
             if (transaction == null)
             {

@@ -13,7 +13,7 @@ namespace StockTraderBroker.Database
         {
             LoadDefaultData();
         }
-        public DbSet<StockTransaction> Transactions{ get; set; }
+        public DbSet<StockTrade> Transactions{ get; set; }
 
         public void LoadDefaultData()
         {

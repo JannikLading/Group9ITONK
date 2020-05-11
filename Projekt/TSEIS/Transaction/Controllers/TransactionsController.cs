@@ -30,7 +30,7 @@ namespace Transaction.Controllers
         
         // POST: api/Transactions
         [HttpPost]
-        public async Task <IActionResult> addTransaction([FromBody] StockTransaction transaction)
+        public async Task <IActionResult> addTransaction([FromBody] StockTrade transaction)
         {
             string json = JsonConvert.SerializeObject(transaction);
             HttpResponseMessage response = await client.PostAsync(UsersApiGetUsersUri, new StringContent(json, Encoding.UTF8, "application/json"));
@@ -39,7 +39,7 @@ namespace Transaction.Controllers
 
             UsersViewModel users = (UsersViewModel)JsonConvert.DeserializeObject(responseResult);
 
-            users.buyer.Balance -= ((transaction.StockPrice*transaction.StockAmount)+transaction.TaxAmount);
+            users.buyer.Balance -= ((transaction.StockPrice*transaction.StockAmount)+ (Double)transaction.TaxAmount);
             users.seller.Balance += transaction.StockPrice * transaction.StockAmount;
 
             string userJson = JsonConvert.SerializeObject(users);

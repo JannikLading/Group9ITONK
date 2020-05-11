@@ -46,7 +46,7 @@ namespace Transaction.Controllers
 
             HttpResponseMessage responseUpdate = await client.PostAsync(UsersApiUpdateUsersUri, new StringContent(userJson, Encoding.UTF8, "application/json"));
 
-            string responseResultUpdate = await response.Content.ReadAsStringAsync();
+            string responseResultUpdate = await responseUpdate.Content.ReadAsStringAsync();
             if (responseResultUpdate.Contains("Ok"))
             {
                 return Ok(users);

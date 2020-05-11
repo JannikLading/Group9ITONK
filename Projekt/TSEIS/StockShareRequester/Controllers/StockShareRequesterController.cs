@@ -38,7 +38,7 @@ namespace StockShareRequester.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> RequestTrade(int id, [FromBody] Models.UserDto user)
+        public async Task<IActionResult> RequestTrade([FromBody] BuyerDto user)
         {
             if (user == null)
             {

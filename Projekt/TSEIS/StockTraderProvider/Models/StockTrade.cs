@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-using TradedShares.Models;
 
 namespace StockTraderBroker.Models
 {
@@ -19,6 +18,5 @@ namespace StockTraderBroker.Models
         public double TaxAmount { get; set; }
         public bool TransactionComplete { get; set; }
         public bool StockTransferComplete { get; set; }
-
     }
 }

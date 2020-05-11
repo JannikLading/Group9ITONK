@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
+using StockTraderBroker.Models;
 using StockTraderBroker.Repositories;
+using StockTraderBroker.Services;
 
 namespace StockTraderBroker.Controllers
 {
@@ -13,14 +18,61 @@ namespace StockTraderBroker.Controllers
     [ApiController]
     public class StockTraderBrokersController : ControllerBase
     {
-        private readonly ILogger<StockTraderBrokersController> _logger;
-        private IStockTransactionRepository _dbContext;
 
-        public StockTraderBrokersController(ILogger<StockTraderBrokersController> logger, IStockTransactionRepository context)
+        private HttpClient _client = new HttpClient();
+        private string _tobinApiPostString = "some Uri";
+
+        private readonly ILogger<StockTraderBrokersController> _logger;
+        private IStockTraderBrokerService _stockTraderBrokerService; 
+
+        public StockTraderBrokersController(ILogger<StockTraderBrokersController> logger, IStockTraderBrokerService stockTraderBrokerService)
         {
             _logger = logger;
-            _dbContext = context;
+            _stockTraderBrokerService = stockTraderBrokerService;
         }
 
+
+        //POST: api/StockTraderBrokers
+        [HttpPost]
+        public IActionResult AddTrade([FromBody] StockTrade trade)
+        {
+            _stockTraderBrokerService.AddStockTrade(trade);
+            return Ok(trade); 
+        }
+
+        //GET: api/StockTraderBrokers
+        [HttpGet]
+        public IEnumerable<StockTrade> GetActiveTrades()
+        {
+            return _stockTraderBrokerService.GetStockTrades(); 
+        }
+
+        //PUT: api/StockTrade/id
+        [HttpPut("{id}")]
+        public async Task<IActionResult> AddBuyerToTrade(int id, [FromBody] int buyerId)
+        {
+            StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(id, buyerId);
+
+            if (stockTrade == null)
+            {
+                return BadRequest();
+            }
+
+            string json = JsonConvert.SerializeObject(stockTrade);
+
+            HttpResponseMessage response = await _client.PostAsync(_tobinApiPostString, new StringContent(json, Encoding.UTF8, "application/json"));
+
+            string responseResult = await response.Content.ReadAsStringAsync();
+            if (responseResult.Contains("Ok"))
+            {
+                StockTrade stockTradeResponse = (StockTrade)JsonConvert.DeserializeObject(responseResult);
+                _stockTraderBrokerService.DeleteStockTrade(stockTradeResponse.Id); 
+                return Ok(stockTradeResponse);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace PublicShareOwnerControl.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<StockTrader>().HasKey(x => x.Id);
-            modelBuilder.Entity<StockTrader>().HasOne(x => x.Portefolio).WithOne();
+            modelBuilder.Entity<StockTrader>().HasOne(x=>x.Portefolio).WithOne().HasForeignKey<StockPortefolio>(x=>x.Id);
 
         }
     }

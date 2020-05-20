@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using TradedShares.Models;
+using System.Linq;
 
 namespace TradedShares.Database
 {
@@ -9,7 +10,10 @@ namespace TradedShares.Database
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            LoadDefaultData();
+            if (!this.Stocks.Any())
+            {
+                LoadDefaultData();
+            }
         }
         public DbSet<Stock> Stocks { get; set; }
 

@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Users.Models;
+using System.Linq;
 
 namespace Users.Database
 {
@@ -9,7 +10,10 @@ namespace Users.Database
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            LoadDefaultData();
+            if (!this.Users.Any())
+            {
+                LoadDefaultData();
+            }
         }
         public DbSet<User> Users { get; set; }
 

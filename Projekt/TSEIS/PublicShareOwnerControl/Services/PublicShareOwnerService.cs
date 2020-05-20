@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PublicShareOwnerControl.Models;
 using PublicShareOwnerControl.Repositories;
 using StockTraderBroker.Models;
@@ -53,31 +54,36 @@ namespace PublicShareOwnerControl.Services
             {
                 var seller = _publicShareOwnerRepository.GetStockTrader(trade.StockSellerId);
                 var buyer = _publicShareOwnerRepository.GetStockTrader(trade.StockBuyerId);
-                if(seller != null && buyer != null)
+                if (seller != null && buyer != null)
                 {
-                    var index = seller.Portefolio.StockShares.FindIndex(x => x.Key == stock.Id);
-                    var stockShare = seller.Portefolio.StockShares[index];
+                    var portefolioSeller = JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(seller.Portefolio.StockShares);
+                    var index = portefolioSeller.FindIndex(x => x.Key == stock.Id);
+                    var stockShare = portefolioSeller[index];
                     if (stockShare.Key == stock.Id && stockShare.Value >= trade.StockAmount)
                     {
                         var updatedShare = new KeyValuePair<int,int>(stock.Id ,stockShare.Value - trade.StockAmount);
                         seller.Portefolio.TotalAmount -= trade.StockAmount;
                         seller.Portefolio.TotalPrice -= stock.Price * trade.StockAmount;
-                        seller.Portefolio.StockShares.RemoveAt(index);
-                        seller.Portefolio.StockShares.Add(updatedShare);
+                        portefolioSeller.RemoveAt(index);
+                        portefolioSeller.Add(updatedShare);
+                        seller.Portefolio.StockShares = portefolioSeller.ToString();
 
-                        index = buyer.Portefolio.StockShares.FindIndex(x => x.Key == stock.Id);
+                        var portefolioBuyer= JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(buyer.Portefolio.StockShares);
+                        index = portefolioBuyer.FindIndex(x => x.Key == stock.Id);
                         if (index != -1)
                         {
-                            stockShare = buyer.Portefolio.StockShares[index];
+                            stockShare = portefolioBuyer[index];
                             updatedShare = new KeyValuePair<int, int>(stock.Id, stockShare.Value + trade.StockAmount);
-                            buyer.Portefolio.StockShares.RemoveAt(index);
+                            portefolioBuyer.RemoveAt(index);
+                            buyer.Portefolio.StockShares = portefolioBuyer.ToString();
                         } else
                         {
                             updatedShare = new KeyValuePair<int, int>(stock.Id, trade.StockAmount);
                         }
                         buyer.Portefolio.TotalAmount += trade.StockAmount;
                         buyer.Portefolio.TotalPrice += stock.Price * trade.StockAmount;
-                        buyer.Portefolio.StockShares.Add(updatedShare);
+                        portefolioBuyer.Add(updatedShare);
+                        buyer.Portefolio.StockShares = portefolioBuyer.ToString();
 
                         _publicShareOwnerRepository.UpdateStockTrader(seller);
                         _publicShareOwnerRepository.UpdateStockTrader(buyer);

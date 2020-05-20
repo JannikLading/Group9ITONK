@@ -31,7 +31,7 @@ namespace TradedShares
             services.AddDbContext<AppDbContext>(options =>
             {
                 //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                options.UseSqlServer("Server=TS-mssql-service-g9;Database=Stocks;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());           
+                options.UseSqlServer("Server=ts-mssql-service-g9;Database=Stocks;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());           
                 //options.UseInMemoryDatabase("stocks");
             }
             );

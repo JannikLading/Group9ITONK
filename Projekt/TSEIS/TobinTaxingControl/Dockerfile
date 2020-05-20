@@ -7,18 +7,17 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
-COPY ["PublicShareOwnerControl/PublicShareOwnerControl.csproj", "PublicShareOwnerControl/"]
-COPY ["TradedShares/TradedShares.csproj", "TradedShares/"]
+COPY ["TobinTaxingControl/TobinTaxingControl.csproj", "TobinTaxingControl/"]
 COPY ["StockTraderProvider/StockTraderBroker.csproj", "StockTraderProvider/"]
-RUN dotnet restore "PublicShareOwnerControl/PublicShareOwnerControl.csproj"
+RUN dotnet restore "TobinTaxingControl/TobinTaxingControl.csproj"
 COPY . .
-WORKDIR "/src/PublicShareOwnerControl"
-RUN dotnet build "PublicShareOwnerControl.csproj" -c Release -o /app/build
+WORKDIR "/src/TobinTaxingControl"
+RUN dotnet build "TobinTaxingControl.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "PublicShareOwnerControl.csproj" -c Release -o /app/publish
+RUN dotnet publish "TobinTaxingControl.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "PublicShareOwnerControl.dll"]
+ENTRYPOINT ["dotnet", "TobinTaxingControl.dll"]

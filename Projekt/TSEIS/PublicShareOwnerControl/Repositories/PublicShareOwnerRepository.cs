@@ -1,4 +1,5 @@
-﻿using PublicShareOwnerControl.Database;
+﻿using Newtonsoft.Json;
+using PublicShareOwnerControl.Database;
 using PublicShareOwnerControl.Models;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace PublicShareOwnerControl.Repositories
     {
         private readonly AppDbContext _dbContext;
 
-        PublicShareOwnerRepository(AppDbContext appDbContext)
+        public PublicShareOwnerRepository(AppDbContext appDbContext)
         {
             _dbContext = appDbContext;
             if(_dbContext.StockTraders == null) 
@@ -63,7 +64,7 @@ namespace PublicShareOwnerControl.Repositories
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()
             {
-                StockShares = stockShares1,
+                StockShares = JsonConvert.SerializeObject(stockShares1),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
             });
@@ -84,7 +85,7 @@ namespace PublicShareOwnerControl.Repositories
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()
             {
-                StockShares = stockShares2,
+                StockShares = JsonConvert.SerializeObject(stockShares2),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
             });
@@ -106,7 +107,7 @@ namespace PublicShareOwnerControl.Repositories
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()
             {
-                StockShares = stockShares3,
+                StockShares = JsonConvert.SerializeObject(stockShares3),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
             });

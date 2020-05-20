@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PublicShareOwnerControl.Repositories
 {
-    interface IPublicShareOwnerRepository
+    public interface IPublicShareOwnerRepository
     {
         void AddStockTrader(StockTrader user);
         List<StockTrader> GetStockTraders();

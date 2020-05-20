@@ -10,7 +10,7 @@ namespace PublicShareOwnerControl.Repositories
     {
         void AddStockTrader(StockTrader user);
         List<StockTrader> GetStockTraders();
-        StockTrader GetStockTrader(int id);
+        StockTrader GetStockTrader(int? id);
         StockTrader UpdateStockTrader(StockTrader newStockUser);
     }
 }

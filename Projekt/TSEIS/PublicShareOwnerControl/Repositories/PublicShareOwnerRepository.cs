@@ -24,7 +24,7 @@ namespace PublicShareOwnerControl.Repositories
                 _dbContext.StockTraders.Add(user);
         }
 
-        public StockTrader GetStockTrader(int id)
+        public StockTrader GetStockTrader(int? id)
         {
             return _dbContext.StockTraders.FirstOrDefault(u => u.Id == id);
         }

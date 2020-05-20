@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using PublicShareOwnerControl.Models;
 using PublicShareOwnerControl.Services;
+using StockTraderBroker.Models;
+using TradedShares.Models;
 
 namespace PublicShareOwnerControl.Controllers
 {
@@ -16,6 +21,8 @@ namespace PublicShareOwnerControl.Controllers
     {
         private ILogger<PublicShareOwnerController> _logger;
         private IPublicShareOwnerService _publicShareOwnerService;
+        private HttpClient client = new HttpClient();
+        readonly string getTradedShare = "api/TradedShares";
 
         PublicShareOwnerController(ILogger<PublicShareOwnerController> logger, IPublicShareOwnerService PSOservice)
         {
@@ -34,6 +41,27 @@ namespace PublicShareOwnerControl.Controllers
         public StockTrader Get(int id)
         {
             return _publicShareOwnerService.GetStockTrader(id);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> TransferStocks([FromBody]StockTrade trade)
+        {
+            if(trade == null || trade.StockTransferComplete == true)
+            {
+                return BadRequest("Trade object is null or stock transfer is already complete");
+            }
+
+            HttpResponseMessage response = await client.GetAsync(getTradedShare+'/'+trade.TransferStockId);
+            string responseResult = await response.Content.ReadAsStringAsync();
+            var transferStock = JsonConvert.DeserializeObject<Stock>(responseResult);
+            if(_publicShareOwnerService.TransferStocks(trade, transferStock))
+            {
+                trade.StockTransferComplete = true;
+                return Ok(trade);
+            }else
+            {
+                return BadRequest("Failed to transfer stocks");
+            }
         }
     }
 }

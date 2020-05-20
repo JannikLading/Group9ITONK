@@ -1,8 +1,10 @@
 ﻿using PublicShareOwnerControl.Models;
+using StockTraderBroker.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TradedShares.Models;
 
 namespace PublicShareOwnerControl.Services
 {
@@ -13,5 +15,6 @@ namespace PublicShareOwnerControl.Services
         StockTrader GetStockTrader(int userId);
         List<StockTrader> GetStockTraders();
         void DeleteUser();
+        bool TransferStocks(StockTrade trade, Stock stock);
     }
 }

@@ -14,6 +14,8 @@ namespace PublicShareOwnerControl.Repositories
         PublicShareOwnerRepository(AppDbContext appDbContext)
         {
             _dbContext = appDbContext;
+            if(_dbContext.StockTraders == null) 
+                loadData();
         }
 
         public void AddStockTrader(StockTrader user)
@@ -45,19 +47,18 @@ namespace PublicShareOwnerControl.Repositories
 
         private void loadData() {
 
-            var stockShares1 = new Dictionary<int, int>();
-            stockShares1.Add(1, 2);
-            stockShares1.Add(2, 3);
-            stockShares1.Add(3, 4);
+            var stockShares1 = new List<KeyValuePair<int, int>>();
+            stockShares1.Add(new KeyValuePair<int, int>(1,2));
+            stockShares1.Add(new KeyValuePair<int, int>(2,3));
+            stockShares1.Add(new KeyValuePair<int, int>(3, 4));
 
             int totalAmount = 0;
             int totalPrice = 0;
-            foreach(var key in stockShares1.Keys)
+            foreach(var stockShare in stockShares1)
             {
-                int amount = 0;
-                stockShares1.TryGetValue(key, out amount);
+                int amount = stockShare.Value;
                 totalAmount += amount;
-                totalPrice += amount * key * 100;
+                totalPrice += amount * stockShare.Key * 100;
             }
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()
@@ -67,19 +68,18 @@ namespace PublicShareOwnerControl.Repositories
                 TotalPrice = totalPrice
             });
 
-            var stockShares2 = new Dictionary<int, int>();
-            stockShares2.Add(4, 1);
-            stockShares2.Add(5, 2);
-            stockShares2.Add(6, 3);
-
+            var stockShares2 = new List<KeyValuePair<int, int>>();
+            stockShares2.Add(new KeyValuePair<int, int>(4, 1));
+            stockShares2.Add(new KeyValuePair<int, int>(5, 2));
+            stockShares2.Add(new KeyValuePair<int, int>(6, 3));
+            
             totalAmount = 0;
             totalPrice = 0;
-            foreach (var key in stockShares2.Keys)
+            foreach (var stockShare in stockShares2)
             {
-                int amount = 0;
-                stockShares2.TryGetValue(key, out amount);
+                int amount = stockShare.Value;
                 totalAmount += amount;
-                totalPrice += amount * key * 100;
+                totalPrice += amount * stockShare.Key * 100;
             }
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()
@@ -89,20 +89,19 @@ namespace PublicShareOwnerControl.Repositories
                 TotalPrice = totalPrice
             });
 
-            var stockShares3 = new Dictionary<int, int>();
-            stockShares3.Add(1, 2);
-            stockShares3.Add(3, 3);
-            stockShares3.Add(4, 2);
-            stockShares3.Add(6, 1);
+            var stockShares3 = new List<KeyValuePair<int, int>>();
+            stockShares3.Add(new KeyValuePair<int, int>(1,2));
+            stockShares3.Add(new KeyValuePair<int, int>(3,3));
+            stockShares3.Add(new KeyValuePair<int, int>(4,2));
+            stockShares3.Add(new KeyValuePair<int, int>(6,1));
 
             totalAmount = 0;
             totalPrice = 0;
-            foreach (var key in stockShares3.Keys)
+            foreach (var stockShare in stockShares3)
             {
-                int amount = 0;
-                stockShares3.TryGetValue(key, out amount);
+                int amount = stockShare.Value;
                 totalAmount += amount;
-                totalPrice += amount * key * 100;
+                totalPrice += amount * stockShare.Key * 100;
             }
 
             _dbContext.StockPortefolios.Add(new StockPortefolio()

@@ -16,8 +16,8 @@ namespace PublicShareOwnerControl.Models
 
         [Key]
         public int Id { get; set; }
-        public Dictionary<int, int> StockShares { get; set; }
+        public List<KeyValuePair<int, int>> StockShares { get; set; }
         public int TotalAmount { get; set; }
-        public int TotalPrice { get; set; }
+        public double TotalPrice { get; set; }
     }
 }

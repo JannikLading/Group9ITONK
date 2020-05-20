@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: PSO-g9
-  namespace: itonk-TSEIS-gr09
+  name: pso-g9
+  # namespace: itonk-tseis-gr09
   labels:
-    app: PSO-g9
+    app: pso-g9
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: PSO-g9
+      app: pso-g9
   template:
     metadata:
       labels:
-        app: PSO-g9
+        app: pso-g9
     spec:
       containers:
         - image: "docker.io/lostreidiotos/psobackend:latest"
           imagePullPolicy: Always
-          name: PSO-g9
+          name: pso-g9
           resources:
             limits:
               cpu: "1"
@@ -30,11 +30,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: PSO-service-g9  
+    name: pso-service-g9  
     labels: 
 spec:
   selector:
-    app: PSO-g9
+    app: pso-g9
   ports:
     - protocol: TCP
       port: 1337

@@ -15,7 +15,7 @@ namespace PublicShareOwnerControl.Services
         private ILogger<PublicShareOwnerService> _logger;
         private IPublicShareOwnerRepository _publicShareOwnerRepository;
 
-        PublicShareOwnerService(ILogger<PublicShareOwnerService> logger, IPublicShareOwnerRepository publicShareOwnerRepository)
+        public PublicShareOwnerService(ILogger<PublicShareOwnerService> logger, IPublicShareOwnerRepository publicShareOwnerRepository)
         {
             _logger = logger;
             _publicShareOwnerRepository = publicShareOwnerRepository;

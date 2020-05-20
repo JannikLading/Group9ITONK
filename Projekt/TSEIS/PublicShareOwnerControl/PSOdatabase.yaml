@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: PSO-mssql-g9-deployment
-  namespace: itonk-ap1-gr09
+  name: pso-mssql-g9-deployment
+  # namespace: itonk-tseis-gr09
   labels:
-    app: PSO-mssql-g9
+    app: pso-mssql-g9
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: PSO-mssql-g9
+      app: pso-mssql-g9
   template:
     metadata:
       labels:
-        app: PSO-mssql-g9
+        app: pso-mssql-g9
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: PSO-mssql-g9
+      - name: pso-mssql-g9
         image: mcr.microsoft.com/mssql/server:2017-CU19-ubuntu-16.04
         resources:
           limits:
@@ -38,16 +38,16 @@ spec:
         - name: MSSQL_LOG_DIR
           value: /var/opt/mssql/ldf          
         volumeMounts:
-        - name: mssql-base-volume
+        - name: pso-mssql-base-volume
           mountPath: /var/opt/mssql
         - name: mssql-ldf-volume
           mountPath: /var/opt/mssql/ldf
         - name: mssql-mdf-volume
           mountPath: /var/opt/mssql/mdf
       volumes:
-      - name: mssql-base-volume
+      - name: pso-mssql-base-volume
         persistentVolumeClaim:
-          claimName: mssql-base-volume
+          claimName: pso-mssql-base-volume
       - name: mssql-mdf-volume
         persistentVolumeClaim:
           claimName: mssql-mdf-volume
@@ -58,10 +58,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: PSO-mssql-service-g9
+  name: pso-mssql-service-g9
 spec:
   selector:
-    app: PSO-mssql-g9
+    app: pso-mssql-g9
   ports:
     - protocol: TCP
       port: 1433
@@ -72,7 +72,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-base-volume
+  name: pso-mssql-base-volume
 spec:
   accessModes:
     - ReadWriteOnce

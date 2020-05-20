@@ -11,7 +11,7 @@ namespace PublicShareOwnerControl.Repositories
     {
         private readonly AppDbContext _dbContext;
 
-        PublicShareOwnerRepository(AppDbContext appDbContext)
+        public PublicShareOwnerRepository(AppDbContext appDbContext)
         {
             _dbContext = appDbContext;
             if(_dbContext.StockTraders == null) 

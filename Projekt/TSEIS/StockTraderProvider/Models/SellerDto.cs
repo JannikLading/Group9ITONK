@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace StockShareProvider.Models
+namespace StockTraderBroker.Models
 {
-    public class StockTradeDto
+    public class SellerDto
     {
         public int TransferStockId { get; set; }
         public int StockAmount { get; set; }

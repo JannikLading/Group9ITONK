@@ -8,7 +8,7 @@ namespace StockTraderBroker.Services
 {
     public interface IStockTraderBrokerService
     {
-        void AddStockTrade(StockTrade stockTrade);
+        void AddStockTrade(SellerDto sellerDto);
         StockTrade UpdateBuyerOnStockTrade(int stockTradeId, int buyerId);
         List<StockTrade> GetStockTrades();
         void DeleteStockTrade(int id);

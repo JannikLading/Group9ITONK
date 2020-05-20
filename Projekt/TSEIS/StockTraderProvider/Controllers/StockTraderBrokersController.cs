@@ -18,7 +18,6 @@ namespace StockTraderBroker.Controllers
     [ApiController]
     public class StockTraderBrokersController : ControllerBase
     {
-
         private HttpClient _client = new HttpClient();
         private string _tobinApiPostString = "some Uri";
 
@@ -31,15 +30,14 @@ namespace StockTraderBroker.Controllers
             _stockTraderBrokerService = stockTraderBrokerService;
         }
 
-
         //POST: api/StockTraderBrokers
         [HttpPost]
-        public IActionResult AddTrade([FromBody] StockTrade trade)
+        public IActionResult AddTrade([FromBody] SellerDto sellerDto)
         {
-            if (trade == null)
+            if (sellerDto == null)
             {
-                _stockTraderBrokerService.AddStockTrade(trade);
-                return Ok(trade);
+                _stockTraderBrokerService.AddStockTrade(sellerDto);
+                return Ok(sellerDto);
             } else
             {
                 return BadRequest();
@@ -53,11 +51,11 @@ namespace StockTraderBroker.Controllers
             return _stockTraderBrokerService.GetStockTrades(); 
         }
 
-        //PUT: api/StockTrade/id
-        [HttpPut("{id}")]
-        public async Task<IActionResult> AddBuyerToTrade(int id, [FromBody] int buyerId)
+        //PUT: api/StockTraderBrokers/id
+        [HttpPut]
+        public async Task<IActionResult> AddBuyerToTrade([FromBody] BuyerDto buyerdto)
         {
-            StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(id, buyerId);
+            StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(buyerdto.StockTradeId, buyerdto.StockBuyerId);
 
             if (stockTrade == null)
             {

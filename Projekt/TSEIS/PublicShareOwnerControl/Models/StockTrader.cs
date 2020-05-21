@@ -13,7 +13,6 @@ namespace PublicShareOwnerControl.Models
 
         }
 
-        [Key]
         public int Id { get; set; }
         public int UserId { get; set; }
         public StockPortefolio Portefolio { get; set; }

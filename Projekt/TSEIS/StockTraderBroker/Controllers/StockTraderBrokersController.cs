@@ -19,7 +19,7 @@ namespace StockTraderBroker.Controllers
     public class StockTraderBrokersController : ControllerBase
     {
         private HttpClient _client = new HttpClient();
-        private string _tobinApiPostString = "some Uri";
+        private string _tobinApiString = "some Uri";
 
         private readonly ILogger<StockTraderBrokersController> _logger;
         private IStockTraderBrokerService _stockTraderBrokerService; 
@@ -34,7 +34,7 @@ namespace StockTraderBroker.Controllers
         [HttpPost]
         public IActionResult AddTrade([FromBody] SellerDto sellerDto)
         {
-            if (sellerDto == null)
+            if (sellerDto != null)
             {
                 _stockTraderBrokerService.AddStockTrade(sellerDto);
                 return Ok(sellerDto);
@@ -57,17 +57,17 @@ namespace StockTraderBroker.Controllers
         {
             StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(buyerdto.StockTradeId, buyerdto.StockBuyerId);
 
-            if (stockTrade == null)
+            if (stockTrade != null)
             {
                 return BadRequest();
             }
 
             string json = JsonConvert.SerializeObject(stockTrade);
 
-            HttpResponseMessage response = await _client.PostAsync(_tobinApiPostString, new StringContent(json, Encoding.UTF8, "application/json"));
-
+            HttpResponseMessage response = await _client.PostAsync(_tobinApiString, new StringContent(json, Encoding.UTF8, "application/json"));
             string responseResult = await response.Content.ReadAsStringAsync();
-            if (responseResult.Contains("Ok"))
+
+            if (response.IsSuccessStatusCode)
             {
                 StockTrade stockTradeResponse = (StockTrade)JsonConvert.DeserializeObject(responseResult);
                 _stockTraderBrokerService.DeleteStockTrade(stockTradeResponse.Id); 

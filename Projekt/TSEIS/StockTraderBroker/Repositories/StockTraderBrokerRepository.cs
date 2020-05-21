@@ -46,7 +46,7 @@ namespace StockTraderBroker.Repositories
             {
                 stocks = _dbContext.StockTrades.ToList();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //Error accured
             }

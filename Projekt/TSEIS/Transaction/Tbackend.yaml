@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: t-g9
-  namespace: itonk-TSEIS-gr09
   labels:
     app: t-g9
 spec:
@@ -37,7 +36,7 @@ spec:
     app: t-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 4200
       targetPort: 80
   type: LoadBalancer
             

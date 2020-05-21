@@ -10,10 +10,10 @@ namespace Users.Database
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            if (!this.Users.Any())
-            {
-                LoadDefaultData();
-            }
+            //if (!this.Users.Any())
+            //{
+            //    LoadDefaultData();
+            //}
         }
         public DbSet<User> Users { get; set; }
 

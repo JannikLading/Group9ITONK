@@ -37,7 +37,7 @@ spec:
     app: pso-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 4200
       targetPort: 80
   type: LoadBalancer
             

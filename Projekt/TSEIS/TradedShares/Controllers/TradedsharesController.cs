@@ -51,6 +51,5 @@ namespace TradedShares.Controllers
         {
             _stockRepository.DeleteStock(id);
         }
-
     }
 }

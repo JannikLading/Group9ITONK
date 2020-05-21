@@ -16,7 +16,7 @@ spec:
         app: ssp-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/ssp:latest"
+        - image: "docker.io/lostreidiotos/stockshareprovider:latest"
           imagePullPolicy: Always
           name: ssp-g9
           resources:

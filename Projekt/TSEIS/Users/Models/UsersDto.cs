@@ -7,7 +7,7 @@ namespace Users.Models
 {
     public class UsersDto
     {
-        User Buyer { get; set; }
-        User Seller { get; set; }
+        public User Buyer { get; set; }
+        public User Seller { get; set; }
     }
 }

@@ -32,11 +32,11 @@ namespace Users.Controllers
 
         [HttpGet]
         [Route("/api/[controller]/GetTransactionUsers")]
-        public IEnumerable<User> GetTransactionUsers([FromBody] UsersDto users)
+        public UsersDto GetTransactionUsers([FromBody] UsersDto users)
         {
             users.Buyer = _userRepository.GetById(users.Buyer.Id);
             users.Seller = _userRepository.GetById(users.Seller.Id);
-            return _userRepository.GetUsers();
+            return users;
         }
 
         // GET api/<controller>/5

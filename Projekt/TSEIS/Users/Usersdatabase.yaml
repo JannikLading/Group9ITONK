@@ -37,13 +37,6 @@ spec:
               value: /var/opt/mssql/mdf
             - name: MSSQL_LOG_DIR
               value: /var/opt/mssql/ldf
-          volumeMounts:
-            - name: users-mssql-base-volume
-              mountPath: /var/opt/mssql
-            - name: mssql-ldf-volume
-              mountPath: /var/opt/mssql/ldf
-            - name: mssql-mdf-volume
-              mountPath: /var/opt/mssql/mdf
       volumes:
         - name: users-mssql-base-volume
           persistentVolumeClaim:

@@ -16,7 +16,7 @@ spec:
         app: t-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/t:latest"
+        - image: "docker.io/lostreidiotos/transaction:latest"
           imagePullPolicy: Always
           name: t-g9
           resources:

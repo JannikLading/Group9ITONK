@@ -16,7 +16,7 @@ spec:
         app: ssr-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/ssr:latest"
+        - image: "docker.io/lostreidiotos/stocksharerequester:latest"
           imagePullPolicy: Always
           name: ssr-g9
           resources:

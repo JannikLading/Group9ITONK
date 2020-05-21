@@ -16,7 +16,7 @@ spec:
         app: ttc-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/ttc:latest"
+        - image: "docker.io/lostreidiotos/tobintaxingcontrol:latest"
           imagePullPolicy: Always
           name: ttc-g9
           resources:

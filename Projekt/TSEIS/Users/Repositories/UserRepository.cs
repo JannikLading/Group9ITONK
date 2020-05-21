@@ -52,7 +52,7 @@ namespace Users.Repositories
             {
                 stocks = _dbContext.Users.ToList();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //Error accured
             }

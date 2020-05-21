@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TobinTaxingControl", "Tobin
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicShareOwnerControl", "PublicShareOwnerControl\PublicShareOwnerControl.csproj", "{9A8D41FF-9639-45B1-974E-08DCBA86AB62}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTraderBroker", "StockTraderProvider\StockTraderBroker.csproj", "{58E61199-81D4-4633-A8B5-EE8FDFECB46E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTraderBroker", "StockTraderBroker\StockTraderBroker.csproj", "{58E61199-81D4-4633-A8B5-EE8FDFECB46E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockShareProvider", "StockShareProvider\StockShareProvider.csproj", "{90C2D595-502A-4112-8ACA-EB6213BA75A6}"
 EndProject

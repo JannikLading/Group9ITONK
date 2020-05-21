@@ -19,7 +19,7 @@ namespace TradedShares.Controllers
 
         public TradedsharesController(ILogger<TradedsharesController> logger, IStockRepository stockRepository)
         {
-            //_logger = logger;
+            _logger = logger;
             _stockRepository = stockRepository;
         }
 

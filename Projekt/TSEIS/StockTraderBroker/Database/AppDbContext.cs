@@ -11,7 +11,7 @@ namespace StockTraderBroker.Database
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
-            LoadDefaultData();
+            //LoadDefaultData();
         }
         public DbSet<StockTrade> StockTrades { get; set; }
 

@@ -24,7 +24,7 @@ namespace PublicShareOwnerControl.Controllers
         private HttpClient client = new HttpClient();
         readonly string getTradedShare = "api/TradedShares";
 
-        PublicShareOwnerController(ILogger<PublicShareOwnerController> logger, IPublicShareOwnerService PSOservice)
+        public PublicShareOwnerController(ILogger<PublicShareOwnerController> logger, IPublicShareOwnerService PSOservice)
         {
             _logger = logger;
             _publicShareOwnerService = PSOservice;
@@ -44,6 +44,7 @@ namespace PublicShareOwnerControl.Controllers
         }
 
         [HttpPost]
+        [Route("Transferstocks")]
         public async Task<IActionResult> TransferStocks([FromBody]StockTrade trade)
         {
             if(trade == null || trade.StockTransferComplete == true)

@@ -19,9 +19,9 @@ namespace TobinTaxingControl.Repositories
         {
             if (taxRegistration != null)
             {
+                taxRegistration.Approved = true;
                 _dbContext.TaxRegistrations.Add(taxRegistration);
             }
-            
         }
 
         public TaxRegistration getById(int id)

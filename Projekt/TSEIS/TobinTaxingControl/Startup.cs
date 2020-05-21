@@ -32,8 +32,8 @@ namespace TobinTaxingControl
             services.AddDbContext<AppDbContext>(options =>
             {
                 //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                //options.UseSqlServer("Server=mysql-service-g9;Database=haandvaerkers;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
-                options.UseInMemoryDatabase("TaxRegistrations");
+                options.UseSqlServer("Server=192.168.87.127;Database=TaxRegistration;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                //options.UseInMemoryDatabase("TaxRegistrations");
             });
 
             services.AddControllers();

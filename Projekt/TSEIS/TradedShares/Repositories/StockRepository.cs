@@ -14,6 +14,9 @@ namespace TradedShares.Repositories
         public StockRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+
+            if (_dbContext.Stocks.Count() == 0)
+                LoadDefaultData();
         }
         public void AddStock(Stock stock)
         {
@@ -50,6 +53,24 @@ namespace TradedShares.Repositories
                 //Error accured
             }
             return stocks;
+        }
+
+        private void LoadDefaultData()
+        {
+            Stock vestas = new Stock { Name = "Vestas Wind System", Price = 100.00 };
+            Stock danskeBank = new Stock { Name = "Danske Bank", Price = 200.00 };
+            Stock carlsbergB = new Stock { Name = "Carlsberg B", Price = 300.00 };
+            Stock mearskA = new Stock { Name = "A.P. Møller - Mærsk A", Price = 400.00 };
+            Stock mearskb = new Stock { Name = "A.P. Møller - Mærsk B", Price = 500.00 };
+            Stock novoNordisk = new Stock { Name = "Novo Nordisk", Price = 600.00 };
+            _dbContext.Stocks.Add(vestas);
+            _dbContext.Stocks.Add(danskeBank);
+            _dbContext.Stocks.Add(carlsbergB);
+            _dbContext.Stocks.Add(mearskA);
+            _dbContext.Stocks.Add(mearskb);
+            _dbContext.Stocks.Add(novoNordisk);
+            _dbContext.SaveChanges();
+
         }
     }
 }

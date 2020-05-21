@@ -31,14 +31,13 @@ namespace PublicShareOwnerControl
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer("Server=PSO-mssql-service-g9;Database=PublicShareOwners;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
+                options.UseSqlServer("Server=192.168.87.172;Database=PublicShareOwners;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
             }
             );
 
             services.AddControllers();
             services.AddScoped<IPublicShareOwnerService, PublicShareOwnerService>();
             services.AddScoped<IPublicShareOwnerRepository, PublicShareOwnerRepository>();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

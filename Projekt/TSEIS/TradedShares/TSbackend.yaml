@@ -16,7 +16,7 @@ spec:
         app: ts-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/tsbackend:latest"
+        - image: "docker.io/lostreidiotos/tradedshares:latest"
           imagePullPolicy: Always
           name: ts-g9
           resources:

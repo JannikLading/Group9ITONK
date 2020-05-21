@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace PublicShareOwnerControl.Repositories
 {
@@ -15,7 +17,7 @@ namespace PublicShareOwnerControl.Repositories
         public PublicShareOwnerRepository(AppDbContext appDbContext)
         {
             _dbContext = appDbContext;
-            if(_dbContext.StockTraders == null) 
+            if(_dbContext.StockTraders.Count() == 0 && _dbContext.StockPortefolios.Count() == 0) 
                 loadData();
         }
 
@@ -27,12 +29,12 @@ namespace PublicShareOwnerControl.Repositories
 
         public StockTrader GetStockTrader(int? id)
         {
-            return _dbContext.StockTraders.FirstOrDefault(u => u.Id == id);
+            return _dbContext.StockTraders.Include(t=>t.Portefolio).FirstOrDefault(u => u.Id == id);
         }
 
         public List<StockTrader> GetStockTraders()
         {
-            return _dbContext.StockTraders.ToList();
+            return _dbContext.StockTraders.Include(x=>x.Portefolio).ToList();
         }
 
         public StockTrader UpdateStockTrader(StockTrader newStockTrader)
@@ -62,12 +64,14 @@ namespace PublicShareOwnerControl.Repositories
                 totalPrice += amount * stockShare.Key * 100;
             }
 
-            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            var portfolio1 = new StockPortefolio()
             {
                 StockShares = JsonConvert.SerializeObject(stockShares1),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
-            });
+            };
+
+            _dbContext.StockPortefolios.Add(portfolio1);
 
             var stockShares2 = new List<KeyValuePair<int, int>>();
             stockShares2.Add(new KeyValuePair<int, int>(4, 1));
@@ -112,12 +116,12 @@ namespace PublicShareOwnerControl.Repositories
                 TotalPrice = totalPrice
             });
 
-            var portfolios = _dbContext.StockPortefolios.ToList();
             _dbContext.StockTraders.Add(new StockTrader()
             {
                 UserId = 1,
-                Portefolio = portfolios[0],
+                Portefolio = portfolio1,
             });
+            _dbContext.SaveChanges();
         }
     }
 }

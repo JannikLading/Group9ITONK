@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: t-g9
-  namespace: itonk-TSEIS-gr09
+  name: users-g9
+  # namespace: itonk-tseis-gr09
   labels:
-    app: t-g9
+    app: users-g9
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: t-g9
+      app: users-g9
   template:
     metadata:
       labels:
-        app: t-g9
+        app: users-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/transaction:latest"
+        - image: "docker.io/lostreidiotos/users:latest"
           imagePullPolicy: Always
-          name: t-g9
+          name: users-g9
           resources:
             limits:
               cpu: "1"
@@ -30,14 +30,13 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: t-service-g9  
-    labels: 
+  name: users-service-g9
+  labels:
 spec:
   selector:
-    app: t-g9
+    app: users-g9
   ports:
     - protocol: TCP
       port: 1337
       targetPort: 80
   type: LoadBalancer
-            

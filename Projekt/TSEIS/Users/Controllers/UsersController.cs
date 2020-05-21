@@ -30,6 +30,15 @@ namespace Users.Controllers
             return _userRepository.GetUsers();
         }
 
+        [HttpGet]
+        [Route("/api/[controller]/GetTransactionUsers")]
+        public UsersDto GetTransactionUsers([FromBody] UsersDto users)
+        {
+            users.Buyer = _userRepository.GetById(users.Buyer.Id);
+            users.Seller = _userRepository.GetById(users.Seller.Id);
+            return users;
+        }
+
         // GET api/<controller>/5
         [HttpGet("{id}")]
         public User Get(int id)
@@ -54,10 +63,11 @@ namespace Users.Controllers
 
         // POST api/<controller>
         [HttpPut]
-        public IActionResult Put([FromBody]User user)
+        public IActionResult Put([FromBody]UsersDto users)
         {
-            _userRepository.UpdateUser(user);
-            return Ok(user);
+            _userRepository.UpdateUser(users.Buyer);
+            _userRepository.UpdateUser(users.Seller);
+            return Ok(users);
         }
 
     }

@@ -14,6 +14,11 @@ namespace Users.Repositories
         public UserRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+            if (_dbContext.Users.Any())
+            {
+                _dbContext.LoadDefaultData();
+                _dbContext.SaveChanges();
+            }
         }
 
         public void AddUser(User user)

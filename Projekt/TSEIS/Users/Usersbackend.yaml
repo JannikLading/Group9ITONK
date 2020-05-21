@@ -37,6 +37,6 @@ spec:
     app: users-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 6666
       targetPort: 80
   type: LoadBalancer

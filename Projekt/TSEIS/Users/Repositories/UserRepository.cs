@@ -14,7 +14,7 @@ namespace Users.Repositories
         public UserRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
-            if (_dbContext.Users.Any())
+            if (_dbContext.Users.Count() == 0)
             {
                 _dbContext.LoadDefaultData();
                 _dbContext.SaveChanges();

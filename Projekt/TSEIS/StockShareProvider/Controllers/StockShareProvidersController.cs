@@ -16,7 +16,8 @@ namespace StockShareProvider.Controllers
     public class StockShareProvidersController : ControllerBase
     {
         private HttpClient client = new HttpClient();
-        private string TraderBorkerApiPostTrade = "some Uri";
+        private string TraderBrokerApiBase = "some Uri";
+        private string TraderBrokerApiGetShare = "some Uri";
         public async Task<IActionResult> AddTradeAsync([FromBody] SellerDto stock)
         {
             if(stock == null)
@@ -24,7 +25,7 @@ namespace StockShareProvider.Controllers
                 return BadRequest();
             }
             string json = JsonConvert.SerializeObject(stock);
-            HttpResponseMessage response = await client.PostAsync(TraderBorkerApiPostTrade, new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PostAsync(TraderBrokerApiBase + TraderBrokerApiGetShare, new StringContent(json, Encoding.UTF8, "application/json"));
 
             string responseResult = await response.Content.ReadAsStringAsync();
             if (responseResult.Contains("Ok"))

@@ -31,7 +31,7 @@ namespace StockTraderProvider
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer("Server=192.168.87.156;Database=StockTrades;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                options.UseSqlServer("Server=192.168.87.172;Database=StockTrades;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
                 //options.UseInMemoryDatabase("StockTrades");
             });
             services.AddControllers();

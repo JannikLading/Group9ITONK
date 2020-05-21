@@ -24,8 +24,8 @@ namespace TobinTaxingControl.Controllers
         private ITaxRegistrationRepository _dbContext;
         private TobinTransactionService _tobinService;
         private HttpClient client= new HttpClient();
-        private readonly string TransactionBase = "http://192.168.87.127:4200";
-        private readonly string TransactionApiPostString = "/api/transaction";
+        private readonly string TransactionBase = "http://192.168.87.172:4567";
+        private readonly string TransactionApiPostString = "/api/transactions";
 
         public TobinTaxingsController(ILogger<TobinTaxingsController> logger, ITaxRegistrationRepository context, TobinTransactionService service)
         {
@@ -52,7 +52,7 @@ namespace TobinTaxingControl.Controllers
             if (response.IsSuccessStatusCode)
             {
                 _dbContext.addTaxRegistration(newtaxRegistration);
-                return Ok(newtaxRegistration);
+                return Ok(responseResult);
             }
             else
             {

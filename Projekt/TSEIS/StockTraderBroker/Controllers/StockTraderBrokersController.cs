@@ -19,7 +19,7 @@ namespace StockTraderBroker.Controllers
     public class StockTraderBrokersController : ControllerBase
     {
         private HttpClient _client = new HttpClient();
-        private string _tobinApiString = "some Uri";
+        private string _tobinApiString = "http://192.168.87.172:6973/api/tobintaxings";
 
         private readonly ILogger<StockTraderBrokersController> _logger;
         private IStockTraderBrokerService _stockTraderBrokerService; 
@@ -57,9 +57,9 @@ namespace StockTraderBroker.Controllers
         {
             StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(buyerdto.StockTradeId, buyerdto.StockBuyerId);
 
-            if (stockTrade != null)
+            if (stockTrade == null)
             {
-                return BadRequest();
+                return BadRequest($"No trades with the id found");
             }
 
             string json = JsonConvert.SerializeObject(stockTrade);
@@ -69,13 +69,13 @@ namespace StockTraderBroker.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                StockTrade stockTradeResponse = (StockTrade)JsonConvert.DeserializeObject(responseResult);
+                var stockTradeResponse = JsonConvert.DeserializeObject<StockTrade>(responseResult);
                 _stockTraderBrokerService.DeleteStockTrade(stockTradeResponse.Id); 
                 return Ok(stockTradeResponse);
             }
             else
             {
-                return BadRequest();
+                return BadRequest(response.Content);
             }
         }
     }

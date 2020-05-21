@@ -16,7 +16,7 @@ spec:
         app: users-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/usersbackend:latest"
+        - image: "docker.io/lostreidiotos/users:latest"
           imagePullPolicy: Always
           name: users-g9
           resources:

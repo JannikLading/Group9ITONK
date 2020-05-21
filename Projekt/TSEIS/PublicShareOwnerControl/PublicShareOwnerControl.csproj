@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\StockTraderProvider\StockTraderBroker.csproj" />
+    <ProjectReference Include="..\StockTraderBroker\StockTraderBroker.csproj" />
     <ProjectReference Include="..\TradedShares\TradedShares.csproj" />
   </ItemGroup>
 

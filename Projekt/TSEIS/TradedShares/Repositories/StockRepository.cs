@@ -48,7 +48,7 @@ namespace TradedShares.Repositories
             {
                 stocks = _dbContext.Stocks.ToList();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 //Error accured
             }

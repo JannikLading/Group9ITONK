@@ -58,6 +58,8 @@ namespace PublicShareOwnerControl.Services
                 {
                     var portefolioSeller = JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(seller.Portefolio.StockShares);
                     var index = portefolioSeller.FindIndex(x => x.Key == stock.Id);
+                    if(index == -1)
+                        return false;
                     var stockShare = portefolioSeller[index];
                     if (stockShare.Key == stock.Id && stockShare.Value >= trade.StockAmount)
                     {
@@ -66,7 +68,8 @@ namespace PublicShareOwnerControl.Services
                         seller.Portefolio.TotalPrice -= stock.Price * trade.StockAmount;
                         portefolioSeller.RemoveAt(index);
                         portefolioSeller.Add(updatedShare);
-                        seller.Portefolio.StockShares = portefolioSeller.ToString();
+                        seller.Portefolio.StockShares = JsonConvert.SerializeObject(portefolioSeller);
+                        _publicShareOwnerRepository.UpdateStockTrader(seller);
 
                         var portefolioBuyer= JsonConvert.DeserializeObject<List<KeyValuePair<int, int>>>(buyer.Portefolio.StockShares);
                         index = portefolioBuyer.FindIndex(x => x.Key == stock.Id);
@@ -75,7 +78,7 @@ namespace PublicShareOwnerControl.Services
                             stockShare = portefolioBuyer[index];
                             updatedShare = new KeyValuePair<int, int>(stock.Id, stockShare.Value + trade.StockAmount);
                             portefolioBuyer.RemoveAt(index);
-                            buyer.Portefolio.StockShares = portefolioBuyer.ToString();
+                            buyer.Portefolio.StockShares = JsonConvert.SerializeObject(portefolioBuyer);
                         } else
                         {
                             updatedShare = new KeyValuePair<int, int>(stock.Id, trade.StockAmount);
@@ -83,9 +86,8 @@ namespace PublicShareOwnerControl.Services
                         buyer.Portefolio.TotalAmount += trade.StockAmount;
                         buyer.Portefolio.TotalPrice += stock.Price * trade.StockAmount;
                         portefolioBuyer.Add(updatedShare);
-                        buyer.Portefolio.StockShares = portefolioBuyer.ToString();
+                        buyer.Portefolio.StockShares = JsonConvert.SerializeObject(portefolioBuyer);
 
-                        _publicShareOwnerRepository.UpdateStockTrader(seller);
                         _publicShareOwnerRepository.UpdateStockTrader(buyer);
                         transferComplete = true;
                     }

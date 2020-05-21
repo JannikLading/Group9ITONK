@@ -16,7 +16,7 @@ spec:
         app: pso-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/psobackend:latest"
+        - image: "docker.io/lostreidiotos/pso:latest"
           imagePullPolicy: Always
           name: pso-g9
           resources:

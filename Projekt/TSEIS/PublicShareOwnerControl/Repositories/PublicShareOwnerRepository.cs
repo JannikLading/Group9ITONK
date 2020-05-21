@@ -29,7 +29,7 @@ namespace PublicShareOwnerControl.Repositories
 
         public StockTrader GetStockTrader(int? id)
         {
-            return _dbContext.StockTraders.Include(t=>t.Portefolio).FirstOrDefault(u => u.Id == id);
+            return _dbContext.StockTraders.Include(t=>t.Portefolio).FirstOrDefault(u => u.UserId == id);
         }
 
         public List<StockTrader> GetStockTraders()
@@ -43,7 +43,7 @@ namespace PublicShareOwnerControl.Repositories
             if(oldStockTrader != null)
             {
                 oldStockTrader = newStockTrader;
-                _dbContext.SaveChangesAsync();
+                _dbContext.SaveChanges();
             }
             return oldStockTrader;
         }
@@ -87,12 +87,13 @@ namespace PublicShareOwnerControl.Repositories
                 totalPrice += amount * stockShare.Key * 100;
             }
 
-            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            var portfolio2 = new StockPortefolio()
             {
                 StockShares = JsonConvert.SerializeObject(stockShares2),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
-            });
+            };
+            _dbContext.StockPortefolios.Add(portfolio2);
 
             var stockShares3 = new List<KeyValuePair<int, int>>();
             stockShares3.Add(new KeyValuePair<int, int>(1,2));
@@ -109,17 +110,30 @@ namespace PublicShareOwnerControl.Repositories
                 totalPrice += amount * stockShare.Key * 100;
             }
 
-            _dbContext.StockPortefolios.Add(new StockPortefolio()
+            var portfolio3 = new StockPortefolio()
             {
                 StockShares = JsonConvert.SerializeObject(stockShares3),
                 TotalAmount = totalAmount,
                 TotalPrice = totalPrice
-            });
+            };
+            _dbContext.StockPortefolios.Add(portfolio3);
 
             _dbContext.StockTraders.Add(new StockTrader()
             {
                 UserId = 1,
                 Portefolio = portfolio1,
+            });
+
+            _dbContext.StockTraders.Add(new StockTrader()
+            {
+                UserId = 2,
+                Portefolio = portfolio2,
+            });
+
+            _dbContext.StockTraders.Add(new StockTrader()
+            {
+                UserId = 3,
+                Portefolio = portfolio3,
             });
             _dbContext.SaveChanges();
         }

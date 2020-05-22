@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: t-g9
+  namespace: itonk-tseis-gr09
   labels:
     app: t-g9
 spec:

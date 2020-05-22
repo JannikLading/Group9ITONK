@@ -15,7 +15,7 @@ spec:
         app: t-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/transaction:latest"
+        - image: "docker.io/lostreidiotos/transaction:v1"
           imagePullPolicy: Always
           name: t-g9
           resources:
@@ -36,7 +36,7 @@ spec:
     app: t-g9
   ports:
     - protocol: TCP
-      port: 4567
+      port: 6972
       targetPort: 80
   type: LoadBalancer
             

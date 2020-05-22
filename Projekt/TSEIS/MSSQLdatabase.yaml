@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ts-mssql-g9-deployment
+  name: mssql-g9-deployment
   # namespace: itonk-tseis-gr09
   labels:
-    app: ts-mssql-g9
+    app: mssql-g9
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ts-mssql-g9
+      app: mssql-g9
   template:
     metadata:
       labels:
-        app: ts-mssql-g9
+        app: mssql-g9
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: ts-mssql-g9
+      - name: mssql-g9
         image: mcr.microsoft.com/mssql/server:2017-CU19-ubuntu-16.04
         resources:
           limits:
@@ -38,14 +38,14 @@ spec:
         - name: MSSQL_LOG_DIR
           value: /var/opt/mssql/ldf          
         volumeMounts:
-        - name: ts-mssql-base-volume
+        - name: mssql-base-volume
           mountPath: /var/opt/mssql
         - name: mssql-ldf-volume
           mountPath: /var/opt/mssql/ldf
         - name: mssql-mdf-volume
           mountPath: /var/opt/mssql/mdf
       volumes:
-      - name: ts-mssql-base-volume
+      - name: mssql-base-volume
         persistentVolumeClaim:
           claimName: ts-mssql-base-volume
       - name: mssql-mdf-volume
@@ -58,10 +58,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: ts-mssql-service-g9
+  name: mssql-service-g9
 spec:
   selector:
-    app: ts-mssql-g9
+    app: mssql-g9
   ports:
     - protocol: TCP
       port: 1433
@@ -72,7 +72,7 @@ spec:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: ts-mssql-base-volume
+  name: mssql-base-volume
 spec:
   accessModes:
     - ReadWriteOnce

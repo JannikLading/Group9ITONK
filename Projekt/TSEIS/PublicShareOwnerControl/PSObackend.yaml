@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: pso-g9
-  # namespace: itonk-tseis-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: pso-g9
 spec:
@@ -16,7 +16,7 @@ spec:
         app: pso-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/pso:latest"
+        - image: "docker.io/lostreidiotos/pso:v1"
           imagePullPolicy: Always
           name: pso-g9
           resources:
@@ -37,7 +37,7 @@ spec:
     app: pso-g9
   ports:
     - protocol: TCP
-      port: 4200
+      port: 6971
       targetPort: 80
   type: LoadBalancer
             

@@ -22,7 +22,7 @@ namespace PublicShareOwnerControl.Controllers
         private ILogger<PublicShareOwnerController> _logger;
         private IPublicShareOwnerService _publicShareOwnerService;
         private HttpClient client = new HttpClient();
-        readonly string getTradedShare = "http://192.168.87.172:1337/api/TradedShares";
+        readonly string getTradedShare = "http://ts-service-g9:6970/api/TradedShares";
 
         public PublicShareOwnerController(ILogger<PublicShareOwnerController> logger, IPublicShareOwnerService PSOservice)
         {

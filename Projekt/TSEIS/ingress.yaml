@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: grp9-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: example.dk
+      http:
+        paths:
+          - path: /stocks
+            backend:
+              serviceName: ts-service-g9
+              servicePort: 6970
+          - path: /mystonks
+            backend:
+              serviceName: pso-service-g9
+              servicePort: 6971
+          - path: /buystocks
+            backend:
+              serviceName: ssr-service-g9
+              servicePort: 6975
+          - path: /sellstock
+            backend:
+              serviceName: ssp-service-g9
+              servicePort: 6976

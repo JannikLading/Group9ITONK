@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ssp-g9
-  namespace: itonk-TSEIS-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: ssp-g9
 spec:

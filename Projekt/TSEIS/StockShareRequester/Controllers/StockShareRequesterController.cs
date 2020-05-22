@@ -47,9 +47,19 @@ namespace StockShareRequester.Controllers
 
             string json = JsonConvert.SerializeObject(user);
             HttpResponseMessage response = await client.PostAsync(TraderBrokerApiRequestTradeUri, new StringContent(json, Encoding.UTF8, "application/json"));
-
-            string responseResult = await response.Content.ReadAsStringAsync();
-
+            if (response.IsSuccessStatusCode)
+            {
+                string responseResult = await response.Content.ReadAsStringAsync();
+                StockTrade stockTradeResponse = JsonConvert.DeserializeObject<StockTrade>(responseResult);
+                if (stockTradeResponse != null && stockTradeResponse.StockTransferComplete != false && stockTradeResponse.TransactionComplete != false)
+                {
+                    return Ok(stockTradeResponse);
+                }
+                else
+                {
+                    return BadRequest("Something went worng");
+                }
+            }
             return (IActionResult)response;
         }
     }

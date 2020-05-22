@@ -16,19 +16,19 @@ namespace StockShareRequester.Controllers
     public class StockShareRequesterController : ControllerBase
     {
         private HttpClient client = new HttpClient();
-        private string TraderBrokerApiGetSharesUri = "some Uri";
-        private string TraderBrokerApiRequestTradeUri = "some Uri";
+        private string TraderBrokerApiGetActiveTradesUri = "http://192.168.87.172:6974/api/stocktraderbrokers";
+        private string TraderBrokerApiRequestTradeUri = "http://192.168.87.172:6974/api/stocktraderbrokers";
 
 
         [HttpGet]
         public async Task<IEnumerable<StockTrade>> GetActiveShares()
         {
-            HttpResponseMessage response = await client.GetAsync(TraderBrokerApiGetSharesUri);
+            HttpResponseMessage response = await client.GetAsync(TraderBrokerApiGetActiveTradesUri);
 
             string responseResult = await response.Content.ReadAsStringAsync();
             if (responseResult != null)
             {
-                List<StockTrade> trades = (List<StockTrade>)JsonConvert.DeserializeObject(responseResult);
+                var trades = JsonConvert.DeserializeObject<List<StockTrade>>(responseResult);
                 return trades;
             }
             else
@@ -45,8 +45,8 @@ namespace StockShareRequester.Controllers
                 return BadRequest();
             }
 
-            string json = JsonConvert.SerializeObject(user);
-            HttpResponseMessage response = await client.PostAsync(TraderBrokerApiRequestTradeUri, new StringContent(json, Encoding.UTF8, "application/json"));
+            string userJson = JsonConvert.SerializeObject(user);
+            HttpResponseMessage response = await client.PutAsync(TraderBrokerApiRequestTradeUri, new StringContent(userJson, Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 string responseResult = await response.Content.ReadAsStringAsync();
@@ -57,7 +57,7 @@ namespace StockShareRequester.Controllers
                 }
                 else
                 {
-                    return BadRequest("Something went worng");
+                    return BadRequest("Something went wrong");
                 }
             }
             return (IActionResult)response;

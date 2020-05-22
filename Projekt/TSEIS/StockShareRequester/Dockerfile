@@ -8,7 +8,7 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 WORKDIR /src
 COPY ["StockShareRequester/StockShareRequester.csproj", "StockShareRequester/"]
-COPY ["StockTraderProvider/StockTraderBroker.csproj", "StockTraderProvider/"]
+COPY ["StockTraderBroker/StockTraderBroker.csproj", "StockTraderBroker/"]
 RUN dotnet restore "StockShareRequester/StockShareRequester.csproj"
 COPY . .
 WORKDIR "/src/StockShareRequester"

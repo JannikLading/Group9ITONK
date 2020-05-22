@@ -40,7 +40,7 @@ namespace StockTraderBroker.Controllers
                 return Ok(sellerDto);
             } else
             {
-                return BadRequest();
+                return BadRequest("Seller dto not valid");
             }
         }
 
@@ -75,7 +75,7 @@ namespace StockTraderBroker.Controllers
             }
             else
             {
-                return BadRequest(response.Content);
+                return (IActionResult)response;
             }
         }
     }

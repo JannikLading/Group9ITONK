@@ -16,25 +16,23 @@ namespace StockShareProvider.Controllers
     public class StockShareProvidersController : ControllerBase
     {
         private HttpClient client = new HttpClient();
-        private string TraderBrokerApiBase = "some Uri";
-        private string TraderBrokerApiGetShare = "some Uri";
+        private string TraderBrokerApiAddTrade= "http://192.168.87.172:6974/api/stocktraderbrokers";
         public async Task<IActionResult> AddTradeAsync([FromBody] SellerDto stock)
         {
-            if(stock == null)
+            if(stock == null || stock.StockAmount == 0 || stock.StockSellerId==0)
             {
-                return BadRequest();
+                return BadRequest("SellerDto is not valid");
             }
             string json = JsonConvert.SerializeObject(stock);
-            HttpResponseMessage response = await client.PostAsync(TraderBrokerApiBase + TraderBrokerApiGetShare, new StringContent(json, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PostAsync(TraderBrokerApiAddTrade, new StringContent(json, Encoding.UTF8, "application/json"));
 
-            string responseResult = await response.Content.ReadAsStringAsync();
-            if (responseResult.Contains("Ok"))
+            if (response.IsSuccessStatusCode)
             {
-                return Ok(response.Content.ReadAsStringAsync());
+                return Ok(response);
             }
             else
             {
-                return BadRequest();
+                return (IActionResult)response;
             }
         }
     }

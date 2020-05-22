@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mssql-g9-deployment
-  # namespace: itonk-tseis-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: mssql-g9
 spec:
@@ -38,22 +38,22 @@ spec:
         - name: MSSQL_LOG_DIR
           value: /var/opt/mssql/ldf          
         volumeMounts:
-        - name: mssql-base-volume
+        - name: mssql-base-volume-g9
           mountPath: /var/opt/mssql
-        - name: mssql-ldf-volume
+        - name: mssql-ldf-volume-g9
           mountPath: /var/opt/mssql/ldf
-        - name: mssql-mdf-volume
+        - name: mssql-mdf-volume-g9
           mountPath: /var/opt/mssql/mdf
       volumes:
-      - name: mssql-base-volume
+      - name: mssql-base-volume-g9
         persistentVolumeClaim:
-          claimName: ts-mssql-base-volume
-      - name: mssql-mdf-volume
+          claimName: mssql-base-volume-g9
+      - name: mssql-mdf-volume-g9
         persistentVolumeClaim:
-          claimName: mssql-mdf-volume
-      - name: mssql-ldf-volume
+          claimName: mssql-mdf-volume-g9
+      - name: mssql-ldf-volume-g9
         persistentVolumeClaim:
-          claimName: mssql-ldf-volume		  
+          claimName: mssql-ldf-volume-g9		  
 ---
 apiVersion: v1
 kind: Service
@@ -68,11 +68,11 @@ spec:
       targetPort: 1433
   type: LoadBalancer
 ---
-    #mssql base volume claim: mssql-base-volume.yaml
+    #mssql base volume claim: mssql-base-volume-g9.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-base-volume
+  name: mssql-base-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce
@@ -80,11 +80,11 @@ spec:
     requests:
       storage: 8Gi
 ---
-#mssql data volume claim: mssql-mdf-volume.yaml
+#mssql data volume claim: mssql-mdf-volume-g9.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-mdf-volume
+  name: mssql-mdf-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce
@@ -92,11 +92,11 @@ spec:
     requests:
       storage: 8Gi
 ---
-#mssql logs volume claim: mssql-ldf-volume.yaml	  
+#mssql logs volume claim: mssql-ldf-volume-g9.yaml	  
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-ldf-volume
+  name: mssql-ldf-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce

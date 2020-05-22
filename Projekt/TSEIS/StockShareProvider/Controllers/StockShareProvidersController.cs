@@ -16,7 +16,7 @@ namespace StockShareProvider.Controllers
     public class StockShareProvidersController : ControllerBase
     {
         private HttpClient client = new HttpClient();
-        private string TraderBrokerApiAddTrade= "http://192.168.87.172:6974/api/stocktraderbrokers";
+        private string TraderBrokerApiAddTrade= "http://stb-service-g9:6974/api/stocktraderbrokers/trades/add";
         public async Task<IActionResult> AddTradeAsync([FromBody] SellerDto stock)
         {
             if(stock == null || stock.StockAmount == 0 || stock.StockSellerId==0)

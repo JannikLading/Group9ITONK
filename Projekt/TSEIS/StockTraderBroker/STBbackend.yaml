@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: stb-g9
-  # namespace: itonk-tseis-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: stb-g9
 spec:
@@ -16,7 +16,7 @@ spec:
         app: stb-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/stb:latest"
+        - image: "docker.io/lostreidiotos/stb:v1"
           imagePullPolicy: Always
           name: stb-g9
           resources:

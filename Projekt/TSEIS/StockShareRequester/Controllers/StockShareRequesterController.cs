@@ -16,8 +16,8 @@ namespace StockShareRequester.Controllers
     public class StockShareRequesterController : ControllerBase
     {
         private HttpClient client = new HttpClient();
-        private string TraderBrokerApiGetActiveTradesUri = "http://192.168.87.172:6974/api/stocktraderbrokers";
-        private string TraderBrokerApiRequestTradeUri = "http://192.168.87.172:6974/api/stocktraderbrokers";
+        private string TraderBrokerApiGetActiveTradesUri = "http://stb-service-g9:6974/api/stocktraderbrokers/trades";
+        private string TraderBrokerApiRequestTradeUri = "http://stb-service-g9:6974/api/stocktraderbrokers/trades";
 
 
         [HttpGet]
@@ -46,7 +46,7 @@ namespace StockShareRequester.Controllers
             }
 
             string userJson = JsonConvert.SerializeObject(user);
-            HttpResponseMessage response = await client.PutAsync(TraderBrokerApiRequestTradeUri, new StringContent(userJson, Encoding.UTF8, "application/json"));
+            HttpResponseMessage response = await client.PutAsync(TraderBrokerApiRequestTradeUri+"/"+user.StockTradeId+"/buy", new StringContent(userJson, Encoding.UTF8, "application/json"));
             if (response.IsSuccessStatusCode)
             {
                 string responseResult = await response.Content.ReadAsStringAsync();

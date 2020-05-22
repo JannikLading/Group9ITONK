@@ -25,10 +25,11 @@ namespace StockShareProvider.Controllers
             }
             string json = JsonConvert.SerializeObject(stock);
             HttpResponseMessage response = await client.PostAsync(TraderBrokerApiAddTrade, new StringContent(json, Encoding.UTF8, "application/json"));
+            var result = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
             {
-                return Ok(response);
+                return Ok(result);
             }
             else
             {

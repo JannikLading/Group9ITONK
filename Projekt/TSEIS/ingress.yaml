@@ -1,7 +1,8 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: grp9-ingress
+  name: ingress-g9
+  namespace: itonk-tseis-gr09
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:

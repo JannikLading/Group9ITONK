@@ -21,15 +21,15 @@ namespace Users
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<AppDbContext>(options =>  
+            services.AddDbContext<AppDbContext>(options =>
             {
                 //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                options.UseSqlServer("Server=192.168.87.127;Database=Users;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                options.UseSqlServer("Server=mssql-service-g9;Database=Users;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
                 //options.UseInMemoryDatabase("users");
             }
             );
             services.AddControllers();
-            services.AddScoped<IUserRepository, UserRepository>(); 
+            services.AddScoped<IUserRepository, UserRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -22,7 +22,8 @@ namespace Transaction.Controllers
         private readonly ILogger<TransactionsController> _logger;
 
         private HttpClient client = new HttpClient();
-        private string UsersApiUri = "http://localhost:1337/api/Users";
+        private string UsersApiUri = "http://users-service-g9:6969/api/Users";
+        private string PSOApiUri = "http://pso-service-g9:6971/api/PublicShareOwner/transferstocks";
 
         public TransactionsController(ILogger<TransactionsController> logger)
         {
@@ -31,6 +32,7 @@ namespace Transaction.Controllers
         
         // POST: api/Transactions
         [HttpPost]
+        [Route("maketransaction")]
         public async Task <IActionResult> addTransaction([FromBody] StockTrade transaction)
         {
             //string json = JsonConvert.SerializeObject(transaction);
@@ -68,7 +70,13 @@ namespace Transaction.Controllers
             }
             transaction.TransactionComplete = true;
 
-            // Missing PSO communication
+            string tradeDtoString = JsonConvert.SerializeObject(transaction);
+            HttpResponseMessage responsePSO = await client.PostAsync(PSOApiUri, new StringContent(tradeDtoString, Encoding.UTF8, "application/json"));
+            if(responsePSO.StatusCode != HttpStatusCode.OK)
+            {
+                return BadRequest(responsePSO.Content);
+            }
+            transaction.StockTransferComplete = true;
 
             return Ok(transaction);
         }

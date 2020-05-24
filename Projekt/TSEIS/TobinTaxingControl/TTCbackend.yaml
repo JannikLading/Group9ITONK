@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ttc-g9
-  namespace: itonk-TSEIS-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: ttc-g9
 spec:
@@ -16,7 +16,7 @@ spec:
         app: ttc-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/tobintaxingcontrol:latest"
+        - image: "docker.io/lostreidiotos/ttc:v1"
           imagePullPolicy: Always
           name: ttc-g9
           resources:
@@ -37,7 +37,7 @@ spec:
     app: ttc-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 6973
       targetPort: 80
   type: LoadBalancer
             

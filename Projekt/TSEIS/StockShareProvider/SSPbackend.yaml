@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ssp-g9
-  namespace: itonk-TSEIS-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: ssp-g9
 spec:
@@ -16,7 +16,7 @@ spec:
         app: ssp-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/stockshareprovider:latest"
+        - image: "docker.io/lostreidiotos/ssp:v1"
           imagePullPolicy: Always
           name: ssp-g9
           resources:
@@ -37,7 +37,7 @@ spec:
     app: ssp-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 6976
       targetPort: 80
   type: LoadBalancer
             

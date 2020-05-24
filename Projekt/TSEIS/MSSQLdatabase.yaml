@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ts-mssql-g9-deployment
-  # namespace: itonk-tseis-gr09
+  name: mssql-g9-deployment
+  namespace: itonk-tseis-gr09
   labels:
-    app: ts-mssql-g9
+    app: mssql-g9
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: ts-mssql-g9
+      app: mssql-g9
   template:
     metadata:
       labels:
-        app: ts-mssql-g9
+        app: mssql-g9
     spec:
       terminationGracePeriodSeconds: 10
       containers:
-      - name: ts-mssql-g9
+      - name: mssql-g9
         image: mcr.microsoft.com/mssql/server:2017-CU19-ubuntu-16.04
         resources:
           limits:
@@ -38,41 +38,41 @@ spec:
         - name: MSSQL_LOG_DIR
           value: /var/opt/mssql/ldf          
         volumeMounts:
-        - name: ts-mssql-base-volume
+        - name: mssql-base-volume-g9
           mountPath: /var/opt/mssql
-        - name: mssql-ldf-volume
+        - name: mssql-ldf-volume-g9
           mountPath: /var/opt/mssql/ldf
-        - name: mssql-mdf-volume
+        - name: mssql-mdf-volume-g9
           mountPath: /var/opt/mssql/mdf
       volumes:
-      - name: ts-mssql-base-volume
+      - name: mssql-base-volume-g9
         persistentVolumeClaim:
-          claimName: ts-mssql-base-volume
-      - name: mssql-mdf-volume
+          claimName: mssql-base-volume-g9
+      - name: mssql-mdf-volume-g9
         persistentVolumeClaim:
-          claimName: mssql-mdf-volume
-      - name: mssql-ldf-volume
+          claimName: mssql-mdf-volume-g9
+      - name: mssql-ldf-volume-g9
         persistentVolumeClaim:
-          claimName: mssql-ldf-volume		  
+          claimName: mssql-ldf-volume-g9		  
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: ts-mssql-service-g9
+  name: mssql-service-g9
 spec:
   selector:
-    app: ts-mssql-g9
+    app: mssql-g9
   ports:
     - protocol: TCP
       port: 1433
       targetPort: 1433
   type: LoadBalancer
 ---
-    #mssql base volume claim: mssql-base-volume.yaml
+    #mssql base volume claim: mssql-base-volume-g9.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: ts-mssql-base-volume
+  name: mssql-base-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce
@@ -80,11 +80,11 @@ spec:
     requests:
       storage: 8Gi
 ---
-#mssql data volume claim: mssql-mdf-volume.yaml
+#mssql data volume claim: mssql-mdf-volume-g9.yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-mdf-volume
+  name: mssql-mdf-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce
@@ -92,11 +92,11 @@ spec:
     requests:
       storage: 8Gi
 ---
-#mssql logs volume claim: mssql-ldf-volume.yaml	  
+#mssql logs volume claim: mssql-ldf-volume-g9.yaml	  
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: mssql-ldf-volume
+  name: mssql-ldf-volume-g9
 spec:
   accessModes:
     - ReadWriteOnce

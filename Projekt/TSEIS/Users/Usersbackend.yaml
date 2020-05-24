@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-g9
-  # namespace: itonk-tseis-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: users-g9
 spec:
@@ -16,7 +16,7 @@ spec:
         app: users-g9
     spec:
       containers:
-        - image: "docker.io/lostreidiotos/users:latest"
+        - image: "docker.io/lostreidiotos/users:v1"
           imagePullPolicy: Always
           name: users-g9
           resources:
@@ -37,6 +37,6 @@ spec:
     app: users-g9
   ports:
     - protocol: TCP
-      port: 1337
+      port: 6969
       targetPort: 80
   type: LoadBalancer

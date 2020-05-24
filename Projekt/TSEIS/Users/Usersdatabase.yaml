@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: users-mssql-g9-deployment
-  # namespace: itonk-tseis-gr09
+  namespace: itonk-tseis-gr09
   labels:
     app: users-mssql-g9
 spec:

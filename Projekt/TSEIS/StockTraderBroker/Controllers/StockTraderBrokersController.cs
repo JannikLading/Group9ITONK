@@ -19,7 +19,7 @@ namespace StockTraderBroker.Controllers
     public class StockTraderBrokersController : ControllerBase
     {
         private HttpClient _client = new HttpClient();
-        private string _tobinApiString = "some Uri";
+        private string _tobinApiString = "http://ttc-service-g9:6973/api/tobintaxings/registertax";
 
         private readonly ILogger<StockTraderBrokersController> _logger;
         private IStockTraderBrokerService _stockTraderBrokerService; 
@@ -32,6 +32,7 @@ namespace StockTraderBroker.Controllers
 
         //POST: api/StockTraderBrokers
         [HttpPost]
+        [Route("trades/add")]
         public IActionResult AddTrade([FromBody] SellerDto sellerDto)
         {
             if (sellerDto != null)
@@ -40,26 +41,31 @@ namespace StockTraderBroker.Controllers
                 return Ok(sellerDto);
             } else
             {
-                return BadRequest();
+                return BadRequest("Seller dto not valid");
             }
         }
 
         //GET: api/StockTraderBrokers
-        [HttpGet]
+        [HttpGet("trades")]
         public IEnumerable<StockTrade> GetActiveTrades()
         {
             return _stockTraderBrokerService.GetStockTrades(); 
         }
 
-        //PUT: api/StockTraderBrokers/id
+        //PUT: api/StockTraderBrokers/trades/id/buy
         [HttpPut]
-        public async Task<IActionResult> AddBuyerToTrade([FromBody] BuyerDto buyerdto)
+        [Route("trades/{tradeId}/buy")]
+        public async Task<IActionResult> AddBuyerToTrade(int tradeId,[FromBody] BuyerDto buyerdto)
         {
+            if (tradeId != buyerdto.StockTradeId)
+            {
+                return BadRequest("Trade id doesnt match");
+            }
             StockTrade stockTrade = _stockTraderBrokerService.UpdateBuyerOnStockTrade(buyerdto.StockTradeId, buyerdto.StockBuyerId);
 
-            if (stockTrade != null)
+            if (stockTrade == null)
             {
-                return BadRequest();
+                return BadRequest($"No trades with the id found");
             }
 
             string json = JsonConvert.SerializeObject(stockTrade);
@@ -69,13 +75,13 @@ namespace StockTraderBroker.Controllers
 
             if (response.IsSuccessStatusCode)
             {
-                StockTrade stockTradeResponse = (StockTrade)JsonConvert.DeserializeObject(responseResult);
+                var stockTradeResponse = JsonConvert.DeserializeObject<StockTrade>(responseResult);
                 _stockTraderBrokerService.DeleteStockTrade(stockTradeResponse.Id); 
                 return Ok(stockTradeResponse);
             }
             else
             {
-                return BadRequest();
+                return (IActionResult)response;
             }
         }
     }

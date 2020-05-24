@@ -31,7 +31,7 @@ namespace PublicShareOwnerControl
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer("Server=192.168.87.172;Database=PublicShareOwners;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
+                options.UseSqlServer("Server=mssql-service-g9;Database=PublicShareOwners;User ID=SA;Password=Group9database;MultipleActiveResultSets=true");
             }
             );
 

@@ -24,8 +24,8 @@ namespace TobinTaxingControl.Controllers
         private ITaxRegistrationRepository _dbContext;
         private TobinTransactionService _tobinService;
         private HttpClient client= new HttpClient();
-        private readonly string TransactionBase = "http://192.168.87.127:4200";
-        private readonly string TransactionApiPostString = "/api/transaction";
+        private readonly string TransactionBase = "http://t-service-g9:6972";
+        private readonly string TransactionApiPostString = "/api/transactions/maketransaction";
 
         public TobinTaxingsController(ILogger<TobinTaxingsController> logger, ITaxRegistrationRepository context, TobinTransactionService service)
         {
@@ -35,6 +35,7 @@ namespace TobinTaxingControl.Controllers
         }
 
         [HttpPost]
+        [Route("registertax")]
         public async Task<IActionResult> AddTransactionAsync([FromBody] StockTrade transaction)
         {
             if (transaction == null)
@@ -45,14 +46,13 @@ namespace TobinTaxingControl.Controllers
 
             string json = JsonConvert.SerializeObject(transaction);
 
-
             HttpResponseMessage response = await client.PostAsync(TransactionBase+TransactionApiPostString, new StringContent(json, Encoding.UTF8, "application/json"));
 
             string responseResult = await response.Content.ReadAsStringAsync();
             if (response.IsSuccessStatusCode)
             {
                 _dbContext.addTaxRegistration(newtaxRegistration);
-                return Ok(newtaxRegistration);
+                return Ok(responseResult);
             }
             else
             {

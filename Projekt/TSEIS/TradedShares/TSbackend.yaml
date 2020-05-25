@@ -21,9 +21,11 @@ spec:
           name: ts-g9
           resources:
             limits:
-              cpu: "1"
+              cpu: 200m
+              memory: 128Mi
             requests:
-              cpu: "0.1"
+              cpu: 50m
+              memory: 64Mi
           ports:
             - containerPort: 80
 ---
@@ -39,4 +41,4 @@ spec:
     - protocol: TCP
       port: 6970
       targetPort: 80
-  type: LoadBalancer
+  type: NodePort

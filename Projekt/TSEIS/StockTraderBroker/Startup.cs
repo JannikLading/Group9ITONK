@@ -31,7 +31,7 @@ namespace StockTraderProvider
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer("Server=mssql-service-g9;Database=StockTrades;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                options.UseSqlServer("Server=10.11.244.187;Database=StockTradesg9;User ID=SA;Password=F20ItOnk123;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
             });
             services.AddControllers();
             services.AddScoped<IStockTraderBrokerService, StockTraderBrokerService>();

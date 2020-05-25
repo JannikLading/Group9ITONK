@@ -24,7 +24,7 @@ namespace Users
             services.AddDbContext<AppDbContext>(options =>
             {
                 //options.UseMySql($"Server={host};Uid=user;Pwd={paasword};Port={port};Database=haandvaerkers");
-                options.UseSqlServer("Server=mssql-service-g9;Database=Users;User ID=SA;Password=Group9database;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
+                options.UseSqlServer("Server=10.11.244.187;Database=Usersg9;User ID=SA;Password=F20ItOnk123;MultipleActiveResultSets=true", providerOptions => providerOptions.EnableRetryOnFailure());
                 //options.UseInMemoryDatabase("users");
             }
             );
